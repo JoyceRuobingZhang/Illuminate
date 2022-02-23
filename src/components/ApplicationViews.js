@@ -9,19 +9,23 @@ import { EventForm } from "./event/EventForm"
 import { ProfileProvider } from "./auth/ProfileProvider"
 import { Profile } from "./auth/Profile"
 
+import { Home } from "./home/Home"
+
 
 export const ApplicationViews = () => {
     return <>
-        <main style={{
-            margin: "5rem 2rem",
-            backgroundColor: "lightgoldenrodyellow"
-        }}>
+        <main 
+        // style={{
+        //     margin: "3rem 3rem",
+        //     // backgroundColor: "lightgoldenrodyellow"
+        // }}
+        >
             <GameProvider>
                 <EventProvider>
                     <ProfileProvider>
 
                         <Route exact path="/">
-                            <GameList />
+                            <Home />
                         </Route>
                     
                         <Route exact path="/games">

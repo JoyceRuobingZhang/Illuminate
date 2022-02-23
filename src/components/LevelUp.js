@@ -4,17 +4,19 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import bdg from "./orange.png"
 
 export const LevelUp = () => (
     <>
         <Route render={() => {
             if (localStorage.getItem("lu_token")) {
-                return <>
+                return (
+                <>
                     <Route>
                         <NavBar />
                         <ApplicationViews />
                     </Route>
-                </>
+                </>)
             } else {
                 return <Redirect to="/login" />
             }

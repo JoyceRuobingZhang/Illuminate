@@ -1,3 +1,8 @@
+.nav_container {
+    display: flex;
+    flex-direction: row;
+}
+
 .navbar {
     display: flex;
     flex-wrap: nowrap;

@@ -1,27 +1,29 @@
 import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./NavBar.css"
+import logo from './logo.png'
 
 export const NavBar = () => {
-    const history = useHistory()
     return (
-        <ul className="navbar">
-            <li className="navbar__item">
-                <Link className="nav-link" to="/">Home</Link>
-            </li>
+        <div className="nav_container">
+            <img src={logo} alt="illuminate logo" width="250"/>
+            <ul className="navbar">
+                <li className="navbar__item">
+                    <Link className="nav-link" to="/">Home</Link>
+                </li>
 
-            <li className="navbar__item">
-                <Link className="nav-link" to="/games">Games</Link>
-            </li>
+                <li className="navbar__item">
+                    <Link className="nav-link" to="/games">Games</Link>
+                </li>
             
-            <li className="navbar__item">
-                <Link className="nav-link" to="/events">Events</Link>
-            </li>
-            
-            <li className="navbar__item">
-                <Link className="nav-link" to="/profile">Your Profile</Link>
-            </li>
-            {
+                <li className="navbar__item">
+                    <Link className="nav-link" to="/events">Events</Link>
+                </li>
+                
+                <li className="navbar__item">
+                    <Link className="nav-link" to="/profile">Your Profile</Link>
+                </li>
+                {
                 (localStorage.getItem("lu_token") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
@@ -39,6 +41,8 @@ export const NavBar = () => {
                             <Link className="nav-link" to="/register">Register</Link>
                         </li>
                     </>
-            }        </ul>
+                }        
+            </ul>
+        </div>
     )
 }
