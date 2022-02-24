@@ -1,13 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
-import { LevelUp } from "./components/LevelUp.js"
+import { Illuminate } from "./components/Illuminate"
 import "./index.css"
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <LevelUp />
+            <Illuminate />
         </Router>
     </React.StrictMode>,
     document.getElementById("root")
