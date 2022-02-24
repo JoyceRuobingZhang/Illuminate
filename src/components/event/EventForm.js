@@ -16,7 +16,6 @@ export const EventForm = () => {
   });
 
   useEffect(() => {
-    // Get all existing games from API
     getGames()
   }, []);
 

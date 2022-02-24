@@ -1,23 +1,29 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
-import logo from './logo.png'
+import logo1 from './logo1.png'
 
 export const NavBar = () => {
+    const history = useHistory()
     return (
         <div className="nav_container">
-            <img src={logo} alt="illuminate logo" width="250"/>
+            <img src={logo1} alt="illuminate logo" className="logo_nav"/>
+
             <ul className="navbar">
                 <li className="navbar__item">
                     <Link className="nav-link" to="/">Home</Link>
                 </li>
 
                 <li className="navbar__item">
-                    <Link className="nav-link" to="/games">Games</Link>
+                    <Link className="nav-link" to="/games">Services</Link>
                 </li>
             
                 <li className="navbar__item">
                     <Link className="nav-link" to="/events">Events</Link>
+                </li>
+
+                <li className="navbar__item">
+                    <Link className="nav-link" to="/posts">Posts</Link>
                 </li>
                 
                 <li className="navbar__item">
