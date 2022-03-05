@@ -49,7 +49,6 @@ export const GameForm = () => {
         setCurrentGame(newGameState);
     };
 
-
   return (
     <form className="gameForm">
       <h2 className="gameForm__title">Register New Game</h2>

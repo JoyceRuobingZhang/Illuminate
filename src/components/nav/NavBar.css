@@ -9,15 +9,29 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: space-evenly;
+    align-items: flex-end;
 }
 
 .logo_nav {
-    width: 8rem;
-    border-radius: 2rem;
+    width: 14rem;
+    border-radius: 1rem;
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+    margin: 1rem;
+    width: fit-content;
+}
+
+.nav-link {
+    border: none;
+    background: transparent;
+    font-size: 1.25rem;
+    color: darksalmon;
+    font-weight: bolder;
+    font-family: 'Cinzel', serif;
+    text-decoration: none;
+    align-self: center;
 }

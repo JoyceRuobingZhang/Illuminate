@@ -1,13 +1,13 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
-import logo1 from './logo1.png'
+import logo from './logo.png'
 
 export const NavBar = () => {
     const history = useHistory()
     return (
         <div className="nav_container">
-            <img src={logo1} alt="illuminate logo" className="logo_nav"/>
+            <img src={logo} alt="illuminate logo" className="logo_nav"/>
 
             <ul className="navbar">
                 <li className="navbar__item">
@@ -26,13 +26,13 @@ export const NavBar = () => {
                     <Link className="nav-link" to="/posts">Posts</Link>
                 </li>
                 
-                <li className="navbar__item">
+                {/* <li className="navbar__item">
                     <Link className="nav-link" to="/profile">Your Profile</Link>
-                </li>
+                </li> */}
                 {
                 (localStorage.getItem("lu_token") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
+                    <li className="navbar__item">
+                        <button className="nav-link"
                             onClick={() => {
                                 localStorage.removeItem("lu_token")
                                 history.push({ pathname: "/" })
