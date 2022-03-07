@@ -20,40 +20,35 @@ export const ApplicationViews = () => {
         //     // backgroundColor: "lightgoldenrodyellow"
         // }}
         >
-            <GameProvider>
-                <EventProvider>
-                    <ProfileProvider>
 
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                    
-                        <Route exact path="/games">
-                            <GameList />
-                        </Route>
-                        
-                        <Route exact path="/games/new">
-                            <GameForm />
-                        </Route>
+            <Route exact path="/">
+                <Home />
+            </Route>
+        
+            {/* <Route exact path="/games">
+                <GameList />
+            </Route>
+            
+            <Route exact path="/games/new">
+                <GameForm />
+            </Route>
 
-                        <Route exact path="/games/edit/:gameId(\d+)">
-                            <GameForm />
-                        </Route>
-                
-                        <Route exact path="/events">
-                            <EventList />
-                        </Route>
+            <Route exact path="/games/edit/:gameId(\d+)">
+                <GameForm />
+            </Route>
+    
+            <Route exact path="/events">
+                <EventList />
+            </Route>
 
-                        <Route exact path="/events/new">
-                            <EventForm />
-                        </Route>
+            <Route exact path="/events/new">
+                <EventForm />
+            </Route>
 
-                        <Route exact path="/profile">
-                            <Profile />
-                        </Route>
-                    </ProfileProvider>
-                </EventProvider>
-            </GameProvider>
+            <Route exact path="/profile">
+                <Profile />
+            </Route> */}
+     
             
         </main>
     </>

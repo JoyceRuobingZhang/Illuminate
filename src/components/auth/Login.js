@@ -26,8 +26,8 @@ export const Login = () => {
             .then(res => res.json())
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("lu_token", res.token)
-                    localStorage.setItem("lu_login_gamer", res.gamerId)
+                    localStorage.setItem("illuminate_token", res.token)
+                    localStorage.setItem("illuminate_login_appuser", res.appuserId)
                     history.push("/")
                 }
                 else {

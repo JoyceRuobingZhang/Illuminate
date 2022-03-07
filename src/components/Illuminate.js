@@ -4,12 +4,11 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
-import bdg from "./orange.png"
 
 export const Illuminate = () => (
     <>
         <Route render={() => {
-            if (localStorage.getItem("lu_token")) {
+            if (localStorage.getItem("illuminate_token")) {
                 return (
                 <>
                     <Route>
