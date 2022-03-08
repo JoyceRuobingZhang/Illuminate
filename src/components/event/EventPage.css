@@ -1,0 +1,39 @@
+.event_container {
+    margin: 3rem;
+}
+
+.event_banner {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.event_banner_img {
+    height: 30rem;
+    margin-left: 3rem;
+}
+
+.intro {
+    margin-top: 3rem;
+}
+
+.intro h1 {
+    color: rgb(55, 117, 76);
+    border-bottom: 1px solid rgb(163, 160, 160);
+    text-align: center;
+}
+
+.intro p {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    color: rgb(82, 81, 81)
+}
+
+.event_section {
+    padding: 1.5rem 0;
+}
+
+.event_cards {
+    display: flex;
+    flex-direction: row;
+}
