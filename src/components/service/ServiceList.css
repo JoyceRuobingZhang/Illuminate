@@ -32,8 +32,8 @@
 
 .service_icon {
     width: 7rem;
-    height: 5rem;
-    opacity: 0.8;
+    height: 7rem;
+    opacity: 0.9;
     align-self: center;
     margin-right: 2rem;
 }
@@ -50,7 +50,7 @@
 .tag {
     display: block;
     width: max-content;
-    background-color: rgb(196, 219, 221);
+    background-color:  rgb(191, 216, 198);
     padding: 0.25rem;
     margin-bottom: 0.5rem;
     border-radius: 0.25rem;
