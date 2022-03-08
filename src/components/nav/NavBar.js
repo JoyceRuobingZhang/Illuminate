@@ -15,7 +15,7 @@ export const NavBar = () => {
                 </li>
 
                 <li className="navbar__item">
-                    <Link className="nav-link" to="/games">Services</Link>
+                    <Link className="nav-link" to="/services">Services</Link>
                 </li>
             
                 <li className="navbar__item">
@@ -30,11 +30,11 @@ export const NavBar = () => {
                     <Link className="nav-link" to="/profile">Your Profile</Link>
                 </li> */}
                 {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("illuminate_token") !== null) ?
                     <li className="navbar__item">
                         <button className="nav-link"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("illuminate_token")
                                 history.push({ pathname: "/" })
                             }}
                         >Logout</button>
