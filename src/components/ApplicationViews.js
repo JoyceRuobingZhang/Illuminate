@@ -10,6 +10,8 @@ import { ProfileProvider } from "./auth/ProfileProvider"
 import { Profile } from "./auth/Profile"
 
 import { Home } from "./home/Home"
+import { ServiceProvider } from "./service/ServiceProvider"
+import { ServicePage } from "./service/ServicePage"
 
 
 export const ApplicationViews = () => {
@@ -20,36 +22,37 @@ export const ApplicationViews = () => {
         //     // backgroundColor: "lightgoldenrodyellow"
         // }}
         >
+            <ServiceProvider>
 
-            <Route exact path="/">
-                <Home />
-            </Route>
+                <Route exact path="/">
+                    <Home />
+                </Route>
+            
+                <Route exact path="/services">
+                    <ServicePage />
+                </Route>
+                
+                <Route exact path="/games/new">
+                    <GameForm />
+                </Route>
+
+                <Route exact path="/games/edit/:gameId(\d+)">
+                    <GameForm />
+                </Route>
         
-            {/* <Route exact path="/games">
-                <GameList />
-            </Route>
-            
-            <Route exact path="/games/new">
-                <GameForm />
-            </Route>
+                <Route exact path="/events">
+                    <EventList />
+                </Route>
 
-            <Route exact path="/games/edit/:gameId(\d+)">
-                <GameForm />
-            </Route>
-    
-            <Route exact path="/events">
-                <EventList />
-            </Route>
+                <Route exact path="/events/new">
+                    <EventForm />
+                </Route>
 
-            <Route exact path="/events/new">
-                <EventForm />
-            </Route>
-
-            <Route exact path="/profile">
-                <Profile />
-            </Route> */}
+                <Route exact path="/profile">
+                    <Profile />
+                </Route>
      
-            
+            </ServiceProvider>
         </main>
     </>
 }
