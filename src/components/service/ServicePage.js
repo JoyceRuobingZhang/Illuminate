@@ -24,7 +24,11 @@ export const ServicePage = () => {
 
     return (
         <div className="service_container">
-            <h2 className="service_title">Mental Health Professional Help</h2>
+            <div class="drop-shadow"></div>
+            <h2 className="service_title">
+                Mental Health Professional Help <br/>
+                <small>Your Story Matters</small>
+            </h2>
             <div className="filters">
                 <div className="type_filter">
                     <h3>Type:</h3>
