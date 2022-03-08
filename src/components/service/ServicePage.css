@@ -15,7 +15,7 @@
 
 .service_title {
     text-align: center;
-    color:#615e5d;
+    color:  rgb(55, 117, 76);
     font-size: 2rem;
     padding: 3rem;
     border-bottom: 2px solid rgb(211, 206, 206);
@@ -23,7 +23,7 @@
 
 small {
     font-size: 1.15rem;
-    color:rgb(145, 168, 170)
+    color:grey;
 }
 
 .filters {
