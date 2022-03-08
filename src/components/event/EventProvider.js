@@ -8,7 +8,17 @@ export const EventProvider = (props) => {
   const getEvents = () => {
     return fetch("http://localhost:8000/events", {
       headers: {
-        Authorization: `Token ${localStorage.getItem("lu_token")}`,
+        Authorization: `Token ${localStorage.getItem("illuminate_token")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then(setEvents);
+  };
+
+  const getEventsByCategory = (category) => {
+    return fetch(`http://localhost:8000/events?category=${category}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("illuminate_token")}`,
       },
     })
       .then((response) => response.json())
@@ -19,7 +29,7 @@ export const EventProvider = (props) => {
     return fetch("http://localhost:8000/events", {
         method: "POST",
         headers:{
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(event)
@@ -36,7 +46,7 @@ export const EventProvider = (props) => {
     return fetch(`http://localhost:8000/events/${eventId}/signup`, {
       method: "POST",
       headers: {
-        Authorization: `Token ${localStorage.getItem("lu_token")}`,
+        Authorization: `Token ${localStorage.getItem("illuminate_token")}`,
       },
     })
     // .then((response) => response.json()) can't parse "NO CONTENT"
@@ -47,7 +57,7 @@ export const EventProvider = (props) => {
     return fetch(`http://localhost:8000/events/${eventId}/signup`, {
       method: "DELETE",
       headers: {
-        Authorization: `Token ${localStorage.getItem("lu_token")}`,
+        Authorization: `Token ${localStorage.getItem("illuminate_token")}`,
       },
     })
       // .then((response) => response.json())
@@ -55,7 +65,7 @@ export const EventProvider = (props) => {
   };
 
   return (
-    <EventContext.Provider value={{ events, getEvents, createEvent, joinEvent, leaveEvent }}>
+    <EventContext.Provider value={{ events, getEvents, getEventsByCategory, createEvent, joinEvent, leaveEvent }}>
       {props.children}
     </EventContext.Provider>
   );

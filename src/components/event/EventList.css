@@ -1,0 +1,11 @@
+.event_card {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem;
+}
+
+.event_img {
+    width: 22rem;
+    height: 10rem;
+    object-fit: cover;
+}
