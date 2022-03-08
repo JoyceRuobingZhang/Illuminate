@@ -1,0 +1,9 @@
+<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="star-icon" title="star icon">
+<path class="star-icon" fill-rule="evenodd" clip-rule="evenodd" d="M7.92383 1.28041L6.20438 6.52971L0.609685 6.5155C0.0200872 6.514 -0.225002 7.25824 0.252298 7.59856L4.78462 10.8329L3.04164 16.0747C2.85725 16.6275 3.49996 17.0882 3.97649 16.7449L8.49734 13.4949L13.0153 16.7485C13.4911 17.0896 14.1315 16.6311 13.9501 16.0798L12.2117 10.8365L16.7472 7.60599C17.2252 7.26567 16.9801 6.52142 16.3905 6.52216L10.7951 6.53263L9.07941 1.28181C8.91323 0.76197 8.14987 0.693152 7.92375 1.28181L7.92383 1.28041Z" fill="url(#paint0_linear_269_3400)"/>
+<defs>
+<linearGradient id="paint0_linear_269_3400" x1="8.5" y1="0.865723" x2="8.5" y2="16.8657" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FEC300"/>
+<stop offset="1" stop-color="#FFDF01"/>
+</linearGradient>
+</defs>
+</svg>

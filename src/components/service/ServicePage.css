@@ -1,22 +1,36 @@
+.drop-shadow {
+    width: 100%;
+    height: 2px;
+    background: #c6c6c6;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 5px 1px rgb(0 0 0 / 20%);
+}
+
 .service_container {
     display: flex;
     flex-direction: column;
-    margin: 1rem;
-    border-top: 2px solid gray;
+    margin: 2rem 12rem;
 }
 
 .service_title {
     text-align: center;
-    color:rgb(98, 93, 92);
+    color:#615e5d;
+    font-size: 2rem;
+    padding: 3rem;
+    border-bottom: 2px solid rgb(211, 206, 206);
+}
+
+small {
+    font-size: 1rem;
+    color:darksalmon
 }
 
 .filters {
     display: flex;
     list-style-type: none;
     justify-content: center;
-    margin: auto;
-    border: 2px solid gray;
-    width: 70%;
+    border-bottom: 2px solid rgb(211, 206, 206);
 }
 
 .type_filter, .other_filters {

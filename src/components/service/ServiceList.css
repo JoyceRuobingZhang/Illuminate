@@ -1,0 +1,58 @@
+.services {
+    display: flex;
+    flex-direction: column;
+    width:65%;;
+    margin: 1rem 0;
+}
+
+.service {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(235, 230, 230);
+}
+
+.service_main {
+    display: flex;
+}
+
+.service_name {
+    width: 22rem;
+}
+
+.service h4 {
+    margin-bottom: 0.5rem;
+    padding: 0;
+}
+
+.service_email, .service_phone, .service_rating {
+    margin: 1rem 0;
+    display: flex;
+    font-size: 1rem;
+}
+
+.service_icon {
+    width: 7rem;
+    height: 5rem;
+    opacity: 0.8;
+    align-self: center;
+    margin-right: 2rem;
+}
+
+.stars {
+    margin-right: 1rem;
+}
+
+.service_tags {
+    display: block;
+    margin-top: 2rem
+}
+
+.tag {
+    display: block;
+    width: max-content;
+    background-color: rgb(196, 219, 221);
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+}
