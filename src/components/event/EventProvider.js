@@ -22,7 +22,6 @@ export const EventProvider = (props) => {
       },
     })
       .then((response) => response.json())
-      .then(setEvents);
   };
 
   const createEvent = (event) => {
@@ -50,8 +49,7 @@ export const EventProvider = (props) => {
       },
     })
     // .then((response) => response.json()) can't parse "NO CONTENT"
-    .then(getEvents);
-  };
+ d  };
 
   const leaveEvent = (eventId) => {
     return fetch(`http://localhost:8000/events/${eventId}/signup`, {
@@ -61,7 +59,6 @@ export const EventProvider = (props) => {
       },
     })
       // .then((response) => response.json())
-      .then(getEvents);
   };
 
   return (

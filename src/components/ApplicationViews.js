@@ -11,6 +11,7 @@ import { Home } from "./home/Home"
 import { ServiceProvider } from "./service/ServiceProvider"
 import { ServicePage } from "./service/ServicePage"
 import { EventPage } from "./event/EventPage"
+import { CategoriesProvider } from "./category/CategoryProvider"
 
 
 export const ApplicationViews = () => {
@@ -23,6 +24,7 @@ export const ApplicationViews = () => {
         >
             <ServiceProvider>
             <EventProvider>
+                <CategoriesProvider>
 
                 <Route exact path="/">
                     <Home />
@@ -44,15 +46,11 @@ export const ApplicationViews = () => {
                     <GameForm />
                 </Route>
         
-
-                <Route exact path="/events/new">
-                    <EventForm />
-                </Route>
-
                 <Route exact path="/profile">
                     <Profile />
                 </Route>
 
+                </CategoriesProvider>
             </EventProvider>
             </ServiceProvider>
         </main>
