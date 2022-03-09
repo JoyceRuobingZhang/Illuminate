@@ -1,12 +1,32 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
+import { EventForm } from "./EventForm"
 
 export const EventPage = () => {
+    const [ showInput , setShowInput ] = useState(false)
+
+    const category = [
+        {
+         id: 1,
+         label: "Body Movement"
+        },
+        {
+         id: 2,
+         label: "Support Group"
+        },
+        {
+         id: 3,
+         label: "Therapy Group"
+        }
+    ]
+
     return (
         <div className="event_container">
             <div className="drop-shadow"></div>
+            
             <div className="event_banner">
                 <div className="intro">
                     <h1>Mental Health Events</h1>
@@ -21,26 +41,26 @@ export const EventPage = () => {
 
             <div className="drop-shadow"></div>
 
-            <section className="event_section">
-                <h2>Body Movement</h2>
-                <div className="event_cards">
-                    {<EventList category="Body Movement" />}
-                </div>
-            </section>
+            {
+                category.map(c => {
+                return (
+                    <section className="event_section" key={c.id}>
+                        <h2>{c.label}</h2>
+                        <div className="event_cards">
+                            {<EventList category={c.label} />}
+                        </div>
+                    </section>
+                )})
+            }
 
-            <section className="event_section">
-                <h2>Support Group</h2>
-                <div className="event_cards">
-                    {<EventList category="Support Group" />}
-                </div>
-            </section>
+            <button className="event_create" onClick={() => setShowInput(!showInput)}>
+                Create New Event
+            </button>
 
-            <section className="event_section">
-                <h2>Therapy Group</h2>
-                <div className="event_cards">
-                    {<EventList category="Therapy Group" />}
-                </div>
-            </section>
+            {
+                showInput?
+                <EventForm /> : null
+            }
         </div>
     )
 }
