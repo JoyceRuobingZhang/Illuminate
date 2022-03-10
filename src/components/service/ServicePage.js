@@ -12,15 +12,40 @@ export const ServicePage = () => {
         isSlidingScale: false
     })
 
-    const queryParams = Object.entries(filterState).map(keyVal => keyVal.join('=')).join('&')
+    // const queryParams = Object.entries(filterState).map(keyVal => keyVal.join('=')).join('&')
     
     useEffect(() => {
-        if(filterState.type !=='' || filterState.isOnline || filterState.isSlidingScale){
-            getServicesByFilters(queryParams)
-        } 
         getServices()
-    }, [filterState])
+    }, [])
 
+    const serviceTypes = [
+        {
+         id: 1,
+         label: "Hospital" 
+        },
+        {
+         id: 2,
+         label: "Private Practice"
+        },
+        {
+         id: 3,
+         label: "Residential Treatment Center"
+        }
+    ]
+
+    const renderRadioButton = (arr) => {
+        return (
+            arr.map(st => {
+                return (
+                    <label for={st.label} key={st.id}>
+                        <input type="radio" name="serviceType" value={st.label}
+                        onChange={ e => setFilterState({...filterState, ['type']: e.target.value })} />
+                        {st.label}
+                    </label>
+                )
+            })
+        )
+    }
 
     return (
         <div className="service_container">
@@ -32,35 +57,43 @@ export const ServicePage = () => {
             <div className="filters">
                 <div className="type_filter">
                     <h3>Type:</h3>
-                    <div>
-                        <input type="radio" name="type" value="Hospital" onChange={(e) => {setFilterState({...filterState, ['type']: e.target.value})}} />
-                        <span>Hospital</span>
-                    </div>
-                    <div>
-                        <input type="radio" name="type" value="Private Practice" onChange={(e) => setFilterState({...filterState, ['type']: e.target.value})} />
-                        <span>Private Practice</span>
-                    </div>
-                    <div>
-                        <input type="radio" name="type" value="Residential Treatment Center" onChange={(e) => setFilterState({...filterState, ['type']: e.target.value})} />
-                        <span>Residential Treatment Center</span>
-                    </div>
+                    {renderRadioButton(serviceTypes)}
                 </div>
 
                 <ul className="other_filters">
                     <h3>Filter Further:</h3>
                     <li>
-                        <input type="checkbox" name="online" value='online' onChange={() => {
+                        <input type="checkbox" name="online" value='online' onChange={ () => {
                             setFilterState({...filterState, ['isOnline']: (!filterState['isOnline'])})
                         }} />
                         Online
                     </li>
                     <li>
-                        <input type="checkbox" name="slidingScale" value='slidingScale' onChange={(e) => {
-                            setFilterState({...filterState, ['isSlidingScale']: e.target.value})
+                        <input type="checkbox" name="slidingScale" value='slidingScale' onChange={() => {
+                            setFilterState({...filterState, ['isSlidingScale']: (!filterState['isSlidingScale'])})
                         }} />
                         Sliding Scale
                     </li>
                 </ul>
+
+                <button className="service_search_submit" onClick={ e => {
+                    e.preventDefault()
+                    const queryParams = Object.entries(filterState).map(keyVal => keyVal.join('=')).join('&')
+    
+                    if(filterState.type !== '' || filterState.isOnline || filterState.isSlidingScale){
+                        getServicesByFilters(queryParams)
+                    } else { 
+                        getServices()
+                    }
+                }}>
+                    Submit
+                </button>
+
+                {/* clear is not working ???? */}
+                {/* <button className="service_search_clear" onClick={e => {
+                    e.preventDefault()
+                    setFilterState({...filterState, ['type']: '' })
+                }}>Clear</button> */}
             </div>
 
             <div className="services">
