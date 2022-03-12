@@ -7,7 +7,7 @@ import "./ServiceList.css"
 export const ServiceList = ({ services }) => {
 
     const renderStars = (rating) => {
-        return [...Array(rating)].map(s => <img src={star} />)
+        return [...Array(rating)].map(s => <img src={star}  />)
     }
     const renderEmptyStars = (rating) => {
         return [...Array( 5 - rating)].map(s => <img src={emptyStar} />)
@@ -40,8 +40,8 @@ export const ServiceList = ({ services }) => {
                             </div>
 
                             <div className="service_tags">
-                                {s.online? <div className="tag">Online</div>: null}
-                                {s.slidingScale? <div className="tag"> Sliding Scale</div>: null}
+                                {s.online ? <div className="tag">Online</div> : null}
+                                {s.slidingScale ? <div className="tag"> Sliding Scale</div> : null}
                             </div>
                         </section>
                     )
