@@ -101,7 +101,7 @@ export const Home = () => {
                 </div>
                 <div className="home_support">
                     <img src={social} alt="social media" className="img_support"/>
-                    <Link className="home_support_text">Mental Health Online Community</Link>
+                    <Link className="home_support_text" to="/posts">Mental Health Online Community</Link>
                 </div>
             </div>
         </div>

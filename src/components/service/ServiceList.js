@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React from "react"
 import icon from './health.png'
 import star from "./star.svg";
 import emptyStar from "./empty-star.svg";

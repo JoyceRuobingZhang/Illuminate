@@ -25,36 +25,6 @@ export const ServiceProvider = (props) => {
         .then(response => response.json())
         .then(setServices)
     }
-   
-
-    const createServices = (game) => {
-        return fetch("http://localhost:8000/games", {
-            method: "POST",
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(game)
-        })
-        .then(response => response.json()) //POST: the response is the object you created
-        // .then(getGames)  works when the database is not large, otherwise not efficient
-        .then((data) => {
-            const newGames = [...games, data]
-            // newGames.push(data)
-            setGames(newGames)
-        });
-    };
-      
-    const deleteGame = (gameId) => {
-        return fetch(`http://localhost:8000/games/${gameId}`, {
-            method:"DELETE",
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
-                "Content-Type": "application/json"
-            }
-        })
-        .then(getGames)
-    }
 
     return (
         <ServiceContext.Provider value={{ services, getServices, getServicesByFilters}} >

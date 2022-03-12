@@ -1,17 +1,14 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { GameProvider } from "./game/GameProvider"
 import { EventProvider } from "./event/EventProvider"
-import { GameForm } from "./game/GameForm"
-import { EventForm } from "./event/EventForm"
-import { ProfileProvider } from "./auth/ProfileProvider"
-import { Profile } from "./auth/Profile"
-
 import { Home } from "./home/Home"
 import { ServiceProvider } from "./service/ServiceProvider"
 import { ServicePage } from "./service/ServicePage"
 import { EventPage } from "./event/EventPage"
 import { CategoriesProvider } from "./category/CategoryProvider"
+import { PostProvider } from "./post/PostProvider"
+import { ProfileProvider } from "./profile/ProfileProvider"
+import { PostPage } from "./post/PostPage"
 
 
 export const ApplicationViews = () => {
@@ -32,35 +29,35 @@ export const ApplicationViews = () => {
         // }}
         >
             <ServiceProvider>
-            <EventProvider>
-                <CategoriesProvider>
+                <EventProvider>
+                    <CategoriesProvider>
+                        <PostProvider>
+                            <ProfileProvider>
 
-                <Route exact path="/">
-                    <Home />
-                </Route>
-            
-                <Route exact path="/services">
-                    <ServicePage props={defaultProps}/>
-                </Route>
+                                <Route exact path="/">
+                                    <Home />
+                                </Route>
+                            
+                                <Route exact path="/services">
+                                    <ServicePage props={defaultProps}/>
+                                </Route>
 
-                <Route exact path="/events">
-                    <EventPage />
-                </Route>
-                
-                <Route exact path="/games/new">
-                    <GameForm />
-                </Route>
+                                <Route exact path="/events">
+                                    <EventPage />
+                                </Route>
+                                
+                                <Route exact path="/posts">
+                                    <PostPage />
+                                </Route>
 
-                <Route exact path="/games/edit/:gameId(\d+)">
-                    <GameForm />
-                </Route>
-        
-                <Route exact path="/profile">
-                    <Profile />
-                </Route>
+                                {/* <Route exact path="/games/edit/:gameId(\d+)">
+                                    <GameForm />
+                                </Route> */}
 
-                </CategoriesProvider>
-            </EventProvider>
+                            </ProfileProvider>
+                        </PostProvider>
+                    </CategoriesProvider>
+                </EventProvider>
             </ServiceProvider>
         </main>
     </>
