@@ -15,6 +15,15 @@ import { CategoriesProvider } from "./category/CategoryProvider"
 
 
 export const ApplicationViews = () => {
+
+    const defaultProps = {
+        center: {
+          lat: 59.95,
+          lng: 30.33
+        },
+        zoom: 11
+    }
+
     return <>
         <main 
         // style={{
@@ -31,7 +40,7 @@ export const ApplicationViews = () => {
                 </Route>
             
                 <Route exact path="/services">
-                    <ServicePage />
+                    <ServicePage props={defaultProps}/>
                 </Route>
 
                 <Route exact path="/events">

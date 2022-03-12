@@ -1,9 +1,13 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect, useRef} from "react"
+// import { Map, GoogleApiWrapper } from 'google-maps-react';
+import GoogleMapReact from 'google-map-react';
+
 import { ServiceContext } from "./ServiceProvider"
 import { ServiceList } from "./ServiceList"
 import "./ServicePage.css"
 
-export const ServicePage = () => {
+
+export const ServicePage = ( ) => {
     const { services, getServices, getServicesByFilters }= useContext(ServiceContext)
 
     const [filterState, setFilterState] = useState({
@@ -11,8 +15,6 @@ export const ServicePage = () => {
         isOnline: false,
         isSlidingScale: false
     })
-
-    // const queryParams = Object.entries(filterState).map(keyVal => keyVal.join('=')).join('&')
     
     useEffect(() => {
         getServices()
@@ -37,7 +39,7 @@ export const ServicePage = () => {
         return (
             arr.map(st => {
                 return (
-                    <label for={st.label} key={st.id}>
+                    <label htmlFor={st.label} key={st.id}>
                         <input type="radio" name="serviceType" value={st.label}
                         onChange={ e => setFilterState({...filterState, ['type']: e.target.value })} />
                         {st.label}
@@ -47,6 +49,34 @@ export const ServicePage = () => {
         )
     }
 
+
+    
+    // render map with Google
+    // const render = (status: Status) => {
+    //     return <h1>{status}</h1>;
+    // };
+
+    // const ref = useRef(null);
+    // const [map, setMap] = useState();
+    const [zoom, setZoom] = useState(3); // initial zoom
+    const [center, setCenter] = useState( {
+        lat: 36.1627,
+        lng: -86.7816
+      });
+    
+    // // const google = window.google = window.google ? window.google : {}
+
+    // useEffect(() => {
+    // if (ref.current && !map) {
+    //     setMap(new google.maps.Map(ref.current, {}));
+    // }
+    // }, [ref, map]);
+
+    // const Map = () => {
+    //     return <div ref={ref} style={{ height: '100vh', width: '100%' }}/>
+    // }
+
+   
     return (
         <div className="service_container">
             <div className="drop-shadow"></div>
@@ -96,8 +126,37 @@ export const ServicePage = () => {
                 }}>Clear</button> */}
             </div>
 
-            <div className="services">
-                <ServiceList services={services}/>
+           
+            
+            <div className="result_wrapper">
+                <div className="services">
+                    <ServiceList services={services}/>
+                </div>
+
+                {/* <GoogleApiWrapper apiKey='AIzaSyA_J8EGYYasRJrRtRBAe4Iur2WSHTjGiVE'>
+                    <Map
+                    // google={props.google}
+                    zoom={8}
+                    style={{ height: '100vh', width: '100%' }}
+                    initialCenter={{ lat: 47.444, lng: -122.176}}
+                    />
+                </GoogleApiWrapper>         */}
+
+
+                {/* npm package */}
+                <div style={{ height: '100vh', width: '50%', margin: '32px' }}>
+                    <GoogleMapReact
+                        defaultCenter={center}
+                        defaultZoom={zoom}
+                        >
+                        {/* <AnyReactComponent
+                            lat={59.955413}
+                            lng={30.337844}
+                            text="My Marker"
+                        /> */}
+                    </GoogleMapReact>
+                </div>
+
             </div>
         </div>
 

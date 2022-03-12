@@ -58,8 +58,7 @@ export const EventPage = () => {
             </button>
 
             {
-                showInput?
-                <EventForm /> : null
+                showInput? <EventForm /> : null
             }
         </div>
     )

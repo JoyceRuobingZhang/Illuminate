@@ -93,11 +93,11 @@ export const Home = () => {
             <div className="home_supports">
                 <div className="home_support">
                     <img src={events} alt="events" className="img_support"/>
-                    <Link className="home_support_text">Mental Health Events</Link>
+                    <Link className="home_support_text" to="/events">Mental Health Events</Link>
                 </div>
                 <div className="home_support">
                     <img src={services} alt="services" className="img_support"/>
-                    <Link className="home_support_text">Mental Health Services</Link>
+                    <Link className="home_support_text" to="/services">Mental Health Services</Link>
                 </div>
                 <div className="home_support">
                     <img src={social} alt="social media" className="img_support"/>
