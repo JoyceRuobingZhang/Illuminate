@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect, useRef} from "react"
-// import { Map, GoogleApiWrapper } from 'google-maps-react';
-import GoogleMapReact from 'google-map-react';
-
+import { Loader } from '@googlemaps/js-api-loader';
 import { ServiceContext } from "./ServiceProvider"
 import { ServiceList } from "./ServiceList"
 import "./ServicePage.css"
@@ -48,35 +46,70 @@ export const ServicePage = ( ) => {
             })
         )
     }
-
-
     
-    // render map with Google
-    // const render = (status: Status) => {
-    //     return <h1>{status}</h1>;
-    // };
+    // build google map
+    const loader = new Loader({
+    apiKey: "AIzaSyA_J8EGYYasRJrRtRBAe4Iur2WSHTjGiVE",
+    version: "weekly",
+    libraries: ["places"]
+    });
 
-    // const ref = useRef(null);
-    // const [map, setMap] = useState();
-    const [zoom, setZoom] = useState(3); // initial zoom
-    const [center, setCenter] = useState( {
-        lat: 36.1627,
-        lng: -86.7816
-      });
-    
-    // // const google = window.google = window.google ? window.google : {}
+    const mapOptions = {
+        center: {
+            lat: 36.174465,
+            lng: -86.767960
+        },
+        zoom: 4
+    };
 
-    // useEffect(() => {
-    // if (ref.current && !map) {
-    //     setMap(new google.maps.Map(ref.current, {}));
-    // }
-    // }, [ref, map]);
+    const mapMaker = async () => {
+        try {
+          const google = await loader.load()
+          const map = await new google.maps.Map(
+            document.getElementById("map"),
+            mapOptions
+          )
+          console.log("map loaded")
+          return map
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      
+      const markerMaker = async (pos, map) => {
+        try {
+          const google = await loader.load()
+          const marker = new google.maps.Marker({
+            position: pos,
+            setMap: map,
+            title: "test",
+          })
+          console.log("marker loaded")
+          return marker
+        } catch (error) {
+          console.log(error)
+        }
+      }
 
-    // const Map = () => {
-    //     return <div ref={ref} style={{ height: '100vh', width: '100%' }}/>
-    // }
+      // render map
+      const GoogleMap = () => {
+        const [map, setMap] = useState(null)
+      
+        useEffect(() => {
+            mapMaker().then(map => setMap(map))
+        }, [])
+      
+        useEffect(() => {
+            if (map !== null) { // check for the initial value
+              markerMaker({ lat: 36.174465, lng: -86.7679606 }, map)
+            }
+          }, [map])
+      
+        return <div className="google_map" id="map" style={{ height: '100vh', width: '100%' }}></div>
+      }
 
-   
+      
+    // render service page
     return (
         <div className="service_container">
             <div className="drop-shadow"></div>
@@ -126,37 +159,12 @@ export const ServicePage = ( ) => {
                 }}>Clear</button> */}
             </div>
 
-           
-            
             <div className="result_wrapper">
                 <div className="services">
                     <ServiceList services={services}/>
                 </div>
 
-                {/* <GoogleApiWrapper apiKey='AIzaSyA_J8EGYYasRJrRtRBAe4Iur2WSHTjGiVE'>
-                    <Map
-                    // google={props.google}
-                    zoom={8}
-                    style={{ height: '100vh', width: '100%' }}
-                    initialCenter={{ lat: 47.444, lng: -122.176}}
-                    />
-                </GoogleApiWrapper>         */}
-
-
-                {/* npm package */}
-                <div style={{ height: '100vh', width: '50%', margin: '32px' }}>
-                    <GoogleMapReact
-                        defaultCenter={center}
-                        defaultZoom={zoom}
-                        >
-                        {/* <AnyReactComponent
-                            lat={59.955413}
-                            lng={30.337844}
-                            text="My Marker"
-                        /> */}
-                    </GoogleMapReact>
-                </div>
-
+                <GoogleMap />
             </div>
         </div>
 

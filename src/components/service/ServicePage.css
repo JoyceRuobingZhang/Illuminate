@@ -83,3 +83,10 @@ small {
     display: flex;
 }
 
+.services {
+    margin-right: 2rem;
+}
+
+.google_map {
+    margin: 2.5rem;
+}
