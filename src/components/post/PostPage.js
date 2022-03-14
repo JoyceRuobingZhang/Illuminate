@@ -16,6 +16,7 @@ export const PostPage = () => {
             <div className="me">
                 <img src={profile.profileImg || 'https://cdn-icons-png.flaticon.com/512/374/374980.png'} 
                 alt="my profile image" className="profile_img" />
+                <h3>{profile.user.firstName} {profile.user.lastName}</h3>
             </div>
 
             <PostList />
