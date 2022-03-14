@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.13.8",
     "@googlemaps/react-wrapper": "^1.1.27",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "google-map-react": "^2.1.10",
     "google-maps-react": "^2.0.6",
     "moment": "^2.29.1",
     "react": "^17.0.2",
