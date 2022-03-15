@@ -1,7 +1,0 @@
-.games {
-    display: flex;
-    flex-direction: column;
-}
-.game{
-    margin: 10px;
-}

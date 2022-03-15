@@ -1,26 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react"
 import moment from 'moment'
-
-import { PostContext } from "./PostProvider";
+import Swal from 'sweetalert2'
 import "./PostList.css"
 import comment from "./comment.svg"
 import like from "./like.svg"
+import approve from "./approve.svg"
 
-export const PostList = () => {
-  const { posts, getPosts } = useContext(PostContext)
 
-  useEffect(() => {
-    getPosts()
-  }, [])
+export const PostList = ({posts, approvePost}) => {
+
+  const sorted = posts.sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate))
+
+  const Swal = require('sweetalert2')
 
   return(
     <div className="posts">
         {
-          posts.filter(post => post.approved === true)
-          .map(p => {
+          posts.length > 0 ?
+          sorted.map(p => {
             return (
                 <section className="post" key={p.id}>
-                    <img src={p.imageUrl} className="profile_img" />
+                    <img src={p.author.profileImg || "https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg"} className="profile_img" />
                     <div className="post_info">
                         <div>
                             <h3>{p.author.user.firstName} {p.author.user.lastName}</h3>
@@ -28,23 +28,38 @@ export const PostList = () => {
                         </div>
 
                         <div className="post_content">{p.content}</div>
-                        <img src={p.imageUrl} className="post_img" />
+                        <img src={p.imageUrl || null} className="post_img" />
 
                         <div className="reactions">
-                            <button className="reaction">
+                            <button className="btn reaction">
                                 <img src={comment} className="icon"/>
                                 Comments
                             </button>
-                            <button className="reaction">
+                            <button className="btn reaction">
                                 <img src={like} className="icon"/>
                                 Like
                             </button>
+                            {
+                              p.approved? 
+                              null 
+                              : <button className="btn reaction" onClick={() => {
+                                  approvePost(p)
+                                  Swal.fire({
+                                    title: 'Approved Successfully',
+                                    confirmButtonText: 'OK'
+                                  })
+                                }}>
+                                    <img src={approve} className="icon"/>
+                                    Approve
+                                </button>
+                            }
                         </div>
 
                     </div>
                 </section>
             )
           })
+          : <p className="no_posts">No Unapproved Posts.</p>
         }
     </div>
   )

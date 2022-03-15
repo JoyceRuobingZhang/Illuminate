@@ -3,7 +3,7 @@ import React, { useState } from "react"
 export const PostContext = React.createContext()
 
 export const PostProvider = (props) => {
-    const [ posts, setPosts ] = useState([])
+    const [ posts, setPosts, unapproved, setUnapproved ] = useState([])
 
     const getPosts = () => {
         return fetch("http://localhost:8000/posts", {
@@ -15,49 +15,69 @@ export const PostProvider = (props) => {
             .then(setPosts)
     }
 
-    // const getPostsByFilters = (queryParams) => {
-    //     return fetch(`http://localhost:8000/Posts?${queryParams}`, {
-    //         method: "GET",
-    //         headers:{
-    //             "Authorization": `Token ${localStorage.getItem("illuminate_token")}`
-    //         }
-    //     })
-    //     .then(response => response.json())
-    //     .then(setPosts)
-    // }
-   
+    const getUnapprovedPosts = () => {
+        return fetch("http://localhost:8000/posts/unapproved", {
+          method: "GET",
+          headers: {
+            "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+          }
+        })
+          .then(res => res.json())
+          .then(setUnapproved)
+      }
 
-    // const createPosts = (game) => {
-    //     return fetch("http://localhost:8000/games", {
-    //         method: "POST",
-    //         headers:{
-    //             "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(game)
-    //     })
-    //     .then(response => response.json()) //POST: the response is the object you created
-    //     // .then(getGames)  works when the database is not large, otherwise not efficient
-    //     .then((data) => {
-    //         const newGames = [...games, data]
-    //         // newGames.push(data)
-    //         setGames(newGames)
-    //     });
-    // };
+    const createPost = (post) => {
+        return fetch("http://localhost:8000/posts", {
+            method: "POST",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        })
+        .then(response => response.json()) //with POST method, the response is the object you created
+     // .then(getPosts)  works when the database is not large, otherwise not efficient
+        .then((data) => {
+            const newPosts = [...posts, data]
+            setPosts(newPosts)
+        })
+    }
+
+    const approvePost = post => {
+        return fetch(`http://localhost:8000/posts/${post.id}/approve`, {
+          method: "PUT",
+          headers: {
+              "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        })
+            .then(getPosts)
+      }
       
-    // const deleteGame = (gameId) => {
-    //     return fetch(`http://localhost:8000/games/${gameId}`, {
-    //         method:"DELETE",
-    //         headers:{
-    //             "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
-    //             "Content-Type": "application/json"
-    //         }
-    //     })
-    //     .then(getGames)
-    // }
+      
+    const deletePost = (postId) => {
+        return fetch(`http://localhost:8000/posts/${postId}`, {
+            method:"DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+                "Content-Type": "application/json"
+            }
+        })
+        .then(getPosts)
+    }
 
     return (
-        <PostContext.Provider value={{ posts, getPosts}} >
+        <PostContext.Provider value={
+            {   posts, 
+                getPosts, 
+                unapproved, 
+                getUnapprovedPosts, 
+                createPost,
+                approvePost, 
+                deletePost
+            }
+        } >
             { props.children }
         </PostContext.Provider>
     )

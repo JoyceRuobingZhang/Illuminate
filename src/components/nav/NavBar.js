@@ -32,9 +32,10 @@ export const NavBar = () => {
                 {
                 (localStorage.getItem("illuminate_token") !== null) ?
                     <li className="navbar__item">
-                        <button className="nav-link"
+                        <button className="nav-link btn"
                             onClick={() => {
                                 localStorage.removeItem("illuminate_token")
+                                localStorage.removeItem("illuminate_login_appuser")
                                 history.push({ pathname: "/" })
                             }}
                         >Logout</button>
