@@ -139,7 +139,7 @@ export const ServicePage = ( ) => {
                     </li>
                 </ul>
 
-                <button className="service_search_submit" onClick={ e => {
+                <button className="submit" onClick={ e => {
                     e.preventDefault()
                     const queryParams = Object.entries(filterState).map(keyVal => keyVal.join('=')).join('&')
     

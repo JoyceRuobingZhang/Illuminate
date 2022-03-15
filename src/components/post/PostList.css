@@ -1,15 +1,18 @@
 .posts {
     display: flex;
     flex-direction: column;
-    margin: 2rem;
+    margin: 2rem 3rem;
     border: 1px solid lightgrey;
-    width: 46rem;
+    border-radius: 1rem;
+    width: 43rem;
 }
 
 .post {
     display: flex;
     flex-direction: row;
-    margin: 1rem 0;
+    margin-bottom: 1rem ;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
 .post:hover {
@@ -37,8 +40,8 @@
 }
 
 .post_img {
-    width: 34rem;
-    height: 35rem;
+    width: 32rem;
+    height: 34rem;
     object-fit: cover;
     border-radius: 2rem;
     border: 0.5px solid lightgray
@@ -56,9 +59,23 @@
     align-items: center;
     border: none;
     background-color: transparent;
+    border-radius: 0.25rem;
+}
+
+.reaction:hover {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color:rgb(222, 222, 223);
 }
 
 .icon {
-    width: 2rem;
+    width: 1.5rem;
     margin-right: 0.5rem;
+}
+
+.no_posts {
+    font-size: large;
+    text-align: center;
+    margin: 10rem
 }

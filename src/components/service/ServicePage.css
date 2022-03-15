@@ -40,7 +40,7 @@ small {
     align-items: center;
 }
 
-.service_search_submit {
+.submit {
     align-self: center;
     margin: 0 4rem;
     border: none;
@@ -51,7 +51,7 @@ small {
     height: max-content;
 }
 
-.service_search_submit:hover {
+.submit:hover {
     align-self: center;
     margin: 0 4rem;
     border: none;
