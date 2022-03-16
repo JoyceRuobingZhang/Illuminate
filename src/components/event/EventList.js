@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { EventContext } from "./EventProvider.js";
+import moment from "moment";
+import Swal from 'sweetalert2'
 import "./EventList.css"
 
 // event card list component
-export const EventList = ({category}) => {
-  const { getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
+export const EventList = ({category, getEventsByCategory, joinEvent, leaveEvent, showInput}) => {
 
   /* make a new references for events in this component; 
      instead of using 'events' in the context, because when they share the same context, they will overwrite each other */
@@ -12,7 +12,9 @@ export const EventList = ({category}) => {
 
   useEffect(() => {
       getEventsByCategory(category).then((data) => setCategorizedEvents(data))
-  }, [])
+  }, [showInput])
+
+  const Swal = require('sweetalert2')
 
   return (
       <>
@@ -23,25 +25,33 @@ export const EventList = ({category}) => {
                       <img src={e.imageUrl} className="event_img" />
                       <div>
                         <p>{e.name}</p>
-                        <p>{new Date(e.time).toLocaleDateString("en-US", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                            })}
+                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}
                         </p>
                         <div className="event_signup">
                             <p>{e.location}</p>
                             {e.joined ? (
                                 <button
                                 className="signup_btn"
-                                onClick={() => leaveEvent(e.id).then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))}
-                                >
+                                onClick={() => {
+                                    leaveEvent(e.id)
+                                    .then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))
+                                    Swal.fire({
+                                        title: 'Sorry to see you leave!',
+                                        confirmButtonText: 'OK'
+                                    })
+                                }}>
                                 Leave
                                 </button>
                             ) : (
                                 <button className="signup_btn" 
-                                onClick={() => joinEvent(e.id).then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))}>
+                                onClick={() => {
+                                    joinEvent(e.id)
+                                    .then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))
+                                    Swal.fire({
+                                        title: 'Thank you for signing up!',
+                                        confirmButtonText: 'OK'
+                                    })
+                                }}>
                                 Join
                                 </button>
                             )}

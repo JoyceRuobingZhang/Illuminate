@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
+import { EventContext } from "./EventProvider.js";
 import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
 import { EventForm } from "./EventForm"
 
 export const EventPage = () => {
+    const { getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
     const [ showInput , setShowInput ] = useState(false)
-
-    const [category, setCategory ] = useState([
+    const [category] = useState([
         {
          id: 1,
          label: "Body Movement"
@@ -47,7 +48,13 @@ export const EventPage = () => {
                     <section className="event_section" key={c.id}>
                         <h2>{c.label}</h2>
                         <div className="event_cards">
-                            {<EventList category={c.label} />}
+                            {<EventList 
+                                category={c.label} 
+                                getEventsByCategory={getEventsByCategory}
+                                joinEvent={joinEvent}
+                                leaveEvent={leaveEvent} 
+                                showInput={showInput}
+                            />}
                         </div>
                     </section>
                 )})
@@ -59,7 +66,7 @@ export const EventPage = () => {
 
             {
                 showInput? 
-                <EventForm setShowInput={setShowInput} category={category} setCategory={setCategory} /> 
+                <EventForm setShowInput={setShowInput} /> 
                 : null
             }
         </div>
