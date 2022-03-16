@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef} from "react"
-import { Loader } from '@googlemaps/js-api-loader';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { ServiceContext } from "./ServiceProvider"
 import { ServiceList } from "./ServiceList"
 import "./ServicePage.css"
@@ -46,67 +46,36 @@ export const ServicePage = ( ) => {
             })
         )
     }
+
+    /* google map */
+    const containerStyle = {
+        width: '100%',
+        height: '100vh',
+        margin: '32px 0 0 32px'
+    }
     
-    // build google map
-    const loader = new Loader({
-    apiKey: "AIzaSyA_J8EGYYasRJrRtRBAe4Iur2WSHTjGiVE",
-    version: "weekly",
-    libraries: ["places"]
-    });
+    const center = {
+        lat: 36.174465,
+        lng: -86.767960
+    }
 
-    const mapOptions = {
-        center: {
-            lat: 36.174465,
-            lng: -86.767960
-        },
-        zoom: 4
-    };
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyA_J8EGYYasRJrRtRBAe4Iur2WSHTjGiVE"
+      })
+    
+    const [map, setMap] = React.useState(null)
 
-    const mapMaker = async () => {
-        try {
-          const google = await loader.load()
-          const map = await new google.maps.Map(
-            document.getElementById("map"),
-            mapOptions
-          )
-          console.log("map loaded")
-          return map
-        } catch (error) {
-          console.log(error)
-        }
-      }
-      
-      const markerMaker = async (pos, map) => {
-        try {
-          const google = await loader.load()
-          const marker = new google.maps.Marker({
-            position: pos,
-            setMap: map,
-            title: "test",
-          })
-          console.log("marker loaded")
-          return marker
-        } catch (error) {
-          console.log(error)
-        }
-      }
+    const onLoad = React.useCallback(function callback(map) {
+        const bounds = new window.google.maps.LatLngBounds();
+        map.fitBounds(bounds);
+        setMap(map)
+    }, [])
 
-      // render map
-      const GoogleMap = () => {
-        const [map, setMap] = useState(null)
-      
-        useEffect(() => {
-            mapMaker().then(map => setMap(map))
-        }, [])
-      
-        useEffect(() => {
-            if (map !== null) { // check for the initial value
-              markerMaker({ lat: 36.174465, lng: -86.7679606 }, map)
-            }
-          }, [map])
-      
-        return <div className="google_map" id="map" style={{ height: '100vh', width: '100%' }}></div>
-      }
+    const onUnmount = React.useCallback(function callback(map) {
+        setMap(null)
+    }, [])
+    /* */
 
       
     // render service page
@@ -152,10 +121,13 @@ export const ServicePage = ( ) => {
                     Submit
                 </button>
 
-                {/* clear is not working ???? */}
                 {/* <button className="service_search_clear" onClick={e => {
                     e.preventDefault()
-                    setFilterState({...filterState, ['type']: '' })
+                    setFilterState({...{
+                        type: '',
+                        isOnline: false,
+                        isSlidingScale: false
+                    }})
                 }}>Clear</button> */}
             </div>
 
@@ -163,8 +135,23 @@ export const ServicePage = ( ) => {
                 <div className="services">
                     <ServiceList services={services}/>
                 </div>
-
-                <GoogleMap />
+                {
+                    isLoaded ? (
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={center}
+                          zoom={12}
+                          onLoad={onLoad}
+                          onUnmount={onUnmount}
+                        >
+                            {/* <Marker position={center} /> */}
+                            {services.map(s => 
+                                <Marker position={{lat: parseFloat(s.latitude), lng: parseFloat(s.longitude)}} 
+                                 key={s.id} title={s.name} />
+                            )}
+                        </GoogleMap>
+                    ) : <></>
+                }
             </div>
         </div>
 
