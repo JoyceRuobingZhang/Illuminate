@@ -8,7 +8,7 @@ import { EventForm } from "./EventForm"
 export const EventPage = () => {
     const [ showInput , setShowInput ] = useState(false)
 
-    const category = [
+    const [category, setCategory ] = useState([
         {
          id: 1,
          label: "Body Movement"
@@ -21,7 +21,7 @@ export const EventPage = () => {
          id: 3,
          label: "Therapy Group"
         }
-    ]
+    ])
 
     return (
         <div className="event_container">
@@ -58,7 +58,9 @@ export const EventPage = () => {
             </button>
 
             {
-                showInput? <EventForm /> : null
+                showInput? 
+                <EventForm setShowInput={setShowInput} category={category} setCategory={setCategory} /> 
+                : null
             }
         </div>
     )
