@@ -1,15 +1,17 @@
-import React, { useState, useContext } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useState, useContext, useEffect} from "react"
+import moment from "moment";
 import { EventContext } from "./EventProvider.js";
 import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
 import { EventForm } from "./EventForm"
+import { ProfileContext } from "../profile/ProfileProvider.js";
 
 export const EventPage = () => {
     const { getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
+    const { profile, getProfile } = useContext(ProfileContext)
     const [ showInput , setShowInput ] = useState(false)
-    const [category] = useState([
+    const [ category ] = useState([
         {
          id: 1,
          label: "Body Movement"
@@ -23,6 +25,12 @@ export const EventPage = () => {
          label: "Therapy Group"
         }
     ])
+
+    useEffect(() => {
+        getProfile()
+    }, [profile])
+
+    const Swal = require('sweetalert2')
 
     return (
         <div className="event_container">
@@ -60,14 +68,44 @@ export const EventPage = () => {
                 )})
             }
 
+            <div className="event_section">
+                <h2>My Event</h2>
+                <div className="event_cards">
+                    {
+                        profile.signedUpEvents?.map(e => {
+                            return (
+                                <div className="event_card" key={e.id}>
+                                    <img src={e.imageUrl} className="event_img" />
+                                    <div>
+                                        <p>{e.name}</p>
+                                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                                    </div>
+                                    <div className="event_signup">
+                                        <p>{e.location}</p>
+                                        <button className="signup_btn" onClick={() => {
+                                            leaveEvent(e.id)
+                                            Swal.fire({
+                                                title: 'Sorry to see you leave!',
+                                                confirmButtonText: 'OK'
+                                            })
+                                        }}>
+                                        Leave
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+            
+
             <button className="event_create" onClick={() => setShowInput(!showInput)}>
                 Create New Event
             </button>
 
             {
-                showInput? 
-                <EventForm setShowInput={setShowInput} /> 
-                : null
+                showInput? <EventForm setShowInput={setShowInput} /> : null
             }
         </div>
     )
