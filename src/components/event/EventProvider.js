@@ -13,7 +13,7 @@ export const EventProvider = (props) => {
     })
       .then((response) => response.json())
       .then(setEvents);
-  };
+  }
 
   const getEventsByCategory = (category) => {
     return fetch(`http://localhost:8000/events?category=${category}`, {
@@ -22,7 +22,7 @@ export const EventProvider = (props) => {
       },
     })
       .then((response) => response.json())
-  };
+  }
 
   const createEvent = (event) => {
     return fetch("http://localhost:8000/events", {
@@ -37,8 +37,8 @@ export const EventProvider = (props) => {
     .then((data) => {
         const newEvents = [...events, data]
         setEvents(newEvents)
-    });
-  };
+    })
+  }
 
   // for custom action
   const joinEvent = (eventId) => {
@@ -49,7 +49,7 @@ export const EventProvider = (props) => {
       },
     })
     // .then((response) => response.json()) can't parse "NO CONTENT"
- d  };
+  }
 
   const leaveEvent = (eventId) => {
     return fetch(`http://localhost:8000/events/${eventId}/signup`, {
@@ -59,11 +59,11 @@ export const EventProvider = (props) => {
       },
     })
       // .then((response) => response.json())
-  };
+  }
 
   return (
     <EventContext.Provider value={{ events, getEvents, getEventsByCategory, createEvent, joinEvent, leaveEvent }}>
       {props.children}
     </EventContext.Provider>
-  );
-};
+  )
+}

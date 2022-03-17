@@ -25,8 +25,7 @@ export const EventList = ({category, getEventsByCategory, joinEvent, leaveEvent,
                       <img src={e.imageUrl} className="event_img" />
                       <div>
                         <p>{e.name}</p>
-                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}
-                        </p>
+                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
                         <div className="event_signup">
                             <p>{e.location}</p>
                             {e.joined ? (
