@@ -8,7 +8,7 @@ import { EventForm } from "./EventForm"
 import { ProfileContext } from "../profile/ProfileProvider.js";
 
 export const EventPage = () => {
-    const { getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
+    const { events, getEvents, getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
     const { profile, getProfile } = useContext(ProfileContext)
     const [ showInput , setShowInput ] = useState(false)
     const [ category ] = useState([
@@ -28,7 +28,7 @@ export const EventPage = () => {
 
     useEffect(() => {
         getProfile()
-    }, [profile])
+    }, [events])
 
     const Swal = require('sweetalert2')
 
@@ -69,9 +69,10 @@ export const EventPage = () => {
             }
 
             <div className="event_section">
-                <h2>My Event</h2>
+                <h2 className="event_category">My Events</h2>
                 <div className="event_cards">
                     {
+                        profile.signedUpEvents?.length?
                         profile.signedUpEvents?.map(e => {
                             return (
                                 <div className="event_card" key={e.id}>
@@ -83,10 +84,13 @@ export const EventPage = () => {
                                     <div className="event_signup">
                                         <p>{e.location}</p>
                                         <button className="signup_btn" onClick={() => {
-                                            leaveEvent(e.id)
                                             Swal.fire({
                                                 title: 'Sorry to see you leave!',
                                                 confirmButtonText: 'OK'
+                                            })
+                                            leaveEvent(e.id).then(() => {
+                                                getEvents()
+                                                getEventsByCategory()
                                             })
                                         }}>
                                         Leave
@@ -94,20 +98,21 @@ export const EventPage = () => {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : <h3 className="no_event">You haven't signed up any events yet.</h3>
                     }
                 </div>
             </div>
             
 
-            <button className="event_create" onClick={() => setShowInput(!showInput)}>
+            { profile.user?.isStaff?
+                <button className="event_create" onClick={() => setShowInput(!showInput)}>
                 Create New Event
-            </button>
+                </button>
+            : null }
 
-            {
-                showInput? <EventForm setShowInput={setShowInput} /> : null
-            }
+            { showInput? <EventForm setShowInput={setShowInput} /> : null }
         </div>
     )
 }
+
 
