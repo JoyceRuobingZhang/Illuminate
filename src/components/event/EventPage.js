@@ -32,8 +32,6 @@ export const EventPage = () => {
         getProfile()
     }, [events])
 
-    const Swal = require('sweetalert2')
-
     useEffect(() => {
         getEvents()
     }, [])
@@ -81,6 +79,7 @@ export const EventPage = () => {
                     <h2 className="event_category">My Events</h2>
                     <div className="event_cards">
                     {
+                        profile.signedUpEvents?.length?
                         profile.signedUpEvents?.map( e => {
                             return (
                                 <div className="event_card" key={e.id}>
@@ -97,7 +96,8 @@ export const EventPage = () => {
                                             leaveEvent(e.id).then(() => {
                                                 getEvents()
                                                 getEventsByCategory()
-                                         }}> 
+                                            })
+                                        }}> 
                                             leave 
                                         </button>
                                     </div>
@@ -126,6 +126,8 @@ export const EventPage = () => {
                 </div>
                 <img src={img} className="event_banner_img"/>
             </div>
+
+            <div className="drop-shadow"></div>
 
             <div className="event_tabs">
                 <button className="event_create" type="button" onClick={() => setEventTab("browseEvents")}>Browse Events</button>

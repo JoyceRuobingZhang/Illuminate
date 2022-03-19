@@ -24,16 +24,9 @@
 
 .signup_btn {
     border: none;
-<<<<<<< HEAD
-    border-radius: 0.25rem;
-    background: linear-gradient(to bottom, #ece4d3 6%, #e08481 100%);
-    padding: 0.5rem;
-    width: 3rem;
-=======
     background: linear-gradient(to bottom, #ece4d3 6%, #f5ae7f 100%);
     padding: 0.5rem;
     font-weight: 700;
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
 }
 
 .signup_btn:hover {
@@ -41,9 +34,5 @@
     border-radius: 0.25rem;
     background: linear-gradient(to bottom, #ece4d3 6%, #ecae84 100%);
     padding: 0.5rem;
-<<<<<<< HEAD
-    width: 3rem;
-=======
     font-weight: 700;
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
 }
