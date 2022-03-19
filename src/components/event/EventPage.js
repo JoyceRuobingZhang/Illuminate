@@ -1,31 +1,19 @@
-<<<<<<< HEAD
 import React, { useState, useContext, useEffect } from "react"
 import moment from "moment";
 import { EventContext } from "./EventProvider.js";
 import { ProfileContext } from ".././profile/ProfileProvider"
-=======
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
->>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
 import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
 import { EventForm } from "./EventForm"
-import { ProfileContext } from "../profile/ProfileProvider.js";
 
 
 export const EventPage = () => {
-<<<<<<< HEAD
     const { events, getEvents, getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
-    const { profile, getProfile } = useContext(ProfileContext )
+    const { profile, getProfile } = useContext(ProfileContext)
     const [ eventTab , setEventTab ] = useState("browseEvents")
     const [ showInput , setShowInput ] = useState(false)
     const [ category ] = useState([
-=======
-    const [ showInput , setShowInput ] = useState(false)
-
-    const [category, setCategory ] = useState([
->>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
         {
          id: 1,
          label: "Body Movement"
@@ -73,11 +61,11 @@ export const EventPage = () => {
                         </section>
                     )})
                 }
-    
+
                 <button className="event_create" onClick={() => setShowInput(!showInput)}>
                     Create New Event
                 </button>
-    
+
                 {
                     showInput? 
                     <EventForm setShowInput={setShowInput} /> 
@@ -95,10 +83,8 @@ export const EventPage = () => {
                             return (
                                 <div className="event_card" key={e.id}>
                                     <img src={e.imageUrl} className="event_img" />
-                                    <div>
-                                        <p>{e.name}</p>
-                                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                    </div>
+                                    <p>{e.name}</p>
+                                    <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
                                     <div className="event_signup">
                                         <p>{e.location}</p>
                                         <button
@@ -127,7 +113,7 @@ export const EventPage = () => {
     return (
         <div className="event_container">
             <div className="drop-shadow"></div>
-            
+
             <div className="event_banner">
                 <div className="intro">
                     <h1>Mental Health Events</h1>
@@ -142,37 +128,12 @@ export const EventPage = () => {
 
             <div className="drop-shadow"></div>
 
-<<<<<<< HEAD
             <div className="event_tabs">
                 <button className="event_create" type="button" onClick={() => setEventTab("browseEvents")}>Browse Events</button>
                 <button className="event_create" type="button" onClick={() => setEventTab("myEvents")}>My Events</button>
             </div>
 
             {renderTabs()}
-=======
-            {
-                category.map(c => {
-                return (
-                    <section className="event_section" key={c.id}>
-                        <h2>{c.label}</h2>
-                        <div className="event_cards">
-                            {<EventList category={c.label} />}
-                        </div>
-                    </section>
-                )})
-            }
-
-            <button className="event_create" onClick={() => setShowInput(!showInput)}>
-                Create New Event
-            </button>
-
-            {
-                showInput? 
-                <EventForm setShowInput={setShowInput} category={category} setCategory={setCategory} /> 
-                : null
-            }
->>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
         </div>
     )
 }
-

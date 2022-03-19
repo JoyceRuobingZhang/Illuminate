@@ -1,48 +1,35 @@
 import React, { useContext, useEffect, useState } from "react";
-import { EventContext } from "./EventProvider.js";
+import moment from "moment";
+import Swal from 'sweetalert2'
 import "./EventList.css"
 
 // event card list component
-<<<<<<< HEAD
 export const EventList = ({category, getEventsByCategory, getEvents, joinEvent, leaveEvent, showInput}) => {
-=======
-export const EventList = ({category}) => {
-  const { getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
->>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
 
-  /* make a new references for events in this component; 
-     instead of using 'events' in the context, because when they share the same context, they will overwrite each other */
-  const [ categorizedEvents, setCategorizedEvents ] = useState([])
+/* make a new references for events in this component; 
+    instead of using 'events' in the context, because when they share the same context, they will overwrite each other */
+const [ categorizedEvents, setCategorizedEvents ] = useState([])
 
-  useEffect(() => {
-      getEventsByCategory(category).then((data) => setCategorizedEvents(data))
-  }, [])
+useEffect(() => {
+    getEventsByCategory(category).then((data) => setCategorizedEvents(data))
+}, [showInput])
 
-  return (
-      <>
-      {
-          categorizedEvents.map(e => {
-              return (
-                  <div className="event_card" key={e.id}>
-                      <img src={e.imageUrl} className="event_img" />
-                      <div>
+const Swal = require('sweetalert2')
+
+return (
+    <>
+    {
+        categorizedEvents.map(e => {
+            return (
+                <div className="event_card" key={e.id}>
+                    <img src={e.imageUrl} className="event_img" />
+                    <div>
                         <p>{e.name}</p>
-<<<<<<< HEAD
                         <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
-=======
-                        <p>{new Date(e.time).toLocaleDateString("en-US", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                            })}
-                        </p>
->>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
                         <div className="event_signup">
                             <p>{e.location}</p>
                             {e.joined ? (
                                 <button
-<<<<<<< HEAD
                                     className="signup_btn"
                                     onClick={() => {
                                         leaveEvent(e.id)
@@ -71,25 +58,14 @@ export const EventList = ({category}) => {
                                         })
                                     }}>
                                     Join
-=======
-                                className="signup_btn"
-                                onClick={() => leaveEvent(e.id).then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))}
-                                >
-                                Leave
-                                </button>
-                            ) : (
-                                <button className="signup_btn" 
-                                onClick={() => joinEvent(e.id).then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))}>
-                                Join
->>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
                                 </button>
                             )}
                         </div>
-                      </div>
-                  </div>
-              )
-          })
-      }
-      </>
-  )
+                    </div>
+                </div>
+            )
+        })
+    }
+    </>
+)
 }

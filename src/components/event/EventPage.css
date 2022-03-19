@@ -1,16 +1,16 @@
 .event_container {
-    margin: 3rem;
+    margin: 3rem 4rem;
 }
 
 .event_banner {
-    margin: 3rem 0;
+    margin: 4rem 3rem;
     display: flex;
     justify-content: space-between;
 }
 
 .event_banner_img {
     height: 30rem;
-    margin-left: 3rem;
+    margin-left: 4rem;
 }
 
 .intro {
@@ -40,10 +40,20 @@
 .event_cards {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 1rem 2rem;
+}
+
+.event_category {
+    margin: 1rem 2rem;
+    color: rgb(112, 112, 112);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .event_create {
-    margin: 1rem 3rem 0 0;
+    margin: 1rem 0 0 2rem;
     border: none;
     border-radius: 0.25rem;
     background: linear-gradient(to bottom, #ece4d3 6%, #ecae84 100%);
@@ -57,7 +67,8 @@
     border-radius: 0.25rem;
     background: linear-gradient(to bottom, #ece4d3 6%, rgb(150, 179, 159) 100%);
     padding: 0.75rem;
-    cursor: pointer;
 }
 
-
+.no_event {
+    color: rgb(112, 112, 112);
+}
