@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import React, { useState, useContext, useEffect } from "react"
 import moment from "moment";
 import { EventContext } from "./EventProvider.js";
 import { ProfileContext } from ".././profile/ProfileProvider"
+=======
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+>>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
 import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
@@ -10,11 +15,17 @@ import { ProfileContext } from "../profile/ProfileProvider.js";
 
 
 export const EventPage = () => {
+<<<<<<< HEAD
     const { events, getEvents, getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
     const { profile, getProfile } = useContext(ProfileContext )
     const [ eventTab , setEventTab ] = useState("browseEvents")
     const [ showInput , setShowInput ] = useState(false)
     const [ category ] = useState([
+=======
+    const [ showInput , setShowInput ] = useState(false)
+
+    const [category, setCategory ] = useState([
+>>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
         {
          id: 1,
          label: "Body Movement"
@@ -131,12 +142,36 @@ export const EventPage = () => {
 
             <div className="drop-shadow"></div>
 
+<<<<<<< HEAD
             <div className="event_tabs">
                 <button className="event_create" type="button" onClick={() => setEventTab("browseEvents")}>Browse Events</button>
                 <button className="event_create" type="button" onClick={() => setEventTab("myEvents")}>My Events</button>
             </div>
 
             {renderTabs()}
+=======
+            {
+                category.map(c => {
+                return (
+                    <section className="event_section" key={c.id}>
+                        <h2>{c.label}</h2>
+                        <div className="event_cards">
+                            {<EventList category={c.label} />}
+                        </div>
+                    </section>
+                )})
+            }
+
+            <button className="event_create" onClick={() => setShowInput(!showInput)}>
+                Create New Event
+            </button>
+
+            {
+                showInput? 
+                <EventForm setShowInput={setShowInput} category={category} setCategory={setCategory} /> 
+                : null
+            }
+>>>>>>> parent of e6ea06a (fixed the eventlist-rerender bug)
         </div>
     )
 }

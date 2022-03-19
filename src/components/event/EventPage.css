@@ -40,9 +40,6 @@
 .event_cards {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
 }
 
 .event_create {
