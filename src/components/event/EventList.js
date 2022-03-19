@@ -46,6 +46,17 @@ return (
                                 </button>
                             ) : (
                                 <button className="signup_btn" 
+<<<<<<< HEAD
+                                onClick={() => {
+                                    Swal.fire({
+                                        title: 'Thank you for signing up!',
+                                        confirmButtonText: 'OK'
+                                    })
+                                    joinEvent(e.id)
+                                    .then(() => getEventsByCategory(category).then((data) => setCategorizedEvents(data)))
+                                }}>
+                                Join
+=======
                                     onClick={() => {
                                         joinEvent(e.id)
                                         .then(() => {
@@ -58,6 +69,7 @@ return (
                                         })
                                     }}>
                                     Join
+>>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
                                 </button>
                             )}
                         </div>

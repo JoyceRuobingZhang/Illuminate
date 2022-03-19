@@ -67,8 +67,8 @@
     border-radius: 0.25rem;
     background: linear-gradient(to bottom, #ece4d3 6%, rgb(150, 179, 159) 100%);
     padding: 0.75rem;
-}
 
 .no_event {
     color: rgb(112, 112, 112);
+    cursor: pointer;
 }

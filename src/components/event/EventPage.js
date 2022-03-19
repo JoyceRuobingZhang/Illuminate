@@ -32,6 +32,8 @@ export const EventPage = () => {
         getProfile()
     }, [events])
 
+    const Swal = require('sweetalert2')
+
     useEffect(() => {
         getEvents()
     }, [])
@@ -87,22 +89,21 @@ export const EventPage = () => {
                                     <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
                                     <div className="event_signup">
                                         <p>{e.location}</p>
-                                        <button
-                                            className="signup_btn"
-                                            onClick={() => {
-                                                Swal.fire({
-                                                    title: 'Sorry to see you leave!',
-                                                    confirmButtonText: 'OK'
-                                                })
-                                                leaveEvent(e.id)
-                                                .then(() => getEvents() )
-                                            }}>
-                                            Leave
+                                        <button className="signup_btn" onClick={() => {
+                                            Swal.fire({
+                                                title: 'Sorry to see you leave!',
+                                                confirmButtonText: 'OK'
+                                            })
+                                            leaveEvent(e.id).then(() => {
+                                                getEvents()
+                                                getEventsByCategory()
+                                         }}> 
+                                            leave 
                                         </button>
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : <h3 className="no_event">You haven't signed up any events yet.</h3>
                     }
                     </div>
                 </div>
@@ -126,14 +127,14 @@ export const EventPage = () => {
                 <img src={img} className="event_banner_img"/>
             </div>
 
-            <div className="drop-shadow"></div>
-
             <div className="event_tabs">
                 <button className="event_create" type="button" onClick={() => setEventTab("browseEvents")}>Browse Events</button>
                 <button className="event_create" type="button" onClick={() => setEventTab("myEvents")}>My Events</button>
-            </div>
+             </div>
 
             {renderTabs()}
         </div>
     )
 }
+
+
