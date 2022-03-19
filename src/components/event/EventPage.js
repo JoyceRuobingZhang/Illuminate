@@ -1,15 +1,22 @@
-import React, { useState, useContext, useEffect} from "react"
+import React, { useState, useContext, useEffect } from "react"
 import moment from "moment";
 import { EventContext } from "./EventProvider.js";
+import { ProfileContext } from ".././profile/ProfileProvider"
 import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
 import { EventForm } from "./EventForm"
 import { ProfileContext } from "../profile/ProfileProvider.js";
 
+
 export const EventPage = () => {
     const { events, getEvents, getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
+<<<<<<< HEAD
     const { profile, getProfile } = useContext(ProfileContext)
+=======
+    const { profile, getProfile } = useContext(ProfileContext )
+    const [ eventTab , setEventTab ] = useState("browseEvents")
+>>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
     const [ showInput , setShowInput ] = useState(false)
     const [ category ] = useState([
         {
@@ -29,8 +36,114 @@ export const EventPage = () => {
     useEffect(() => {
         getProfile()
     }, [events])
+<<<<<<< HEAD
 
     const Swal = require('sweetalert2')
+=======
+>>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
+
+    useEffect(() => {
+        getEvents()
+    }, [])
+
+    const Swal = require('sweetalert2')
+
+<<<<<<< HEAD
+            <div className="event_section">
+                <h2 className="event_category">My Events</h2>
+                <div className="event_cards">
+                    {
+                        profile.signedUpEvents?.length?
+                        profile.signedUpEvents?.map(e => {
+=======
+    // render Browse Events and My Events
+    const renderTabs = () => {
+        if(eventTab === "browseEvents"){
+            return (
+                <>
+                {
+                    category.map(c => {
+                    return (
+                        <section className="event_section" key={c.id}>
+                            <h2 className="event_category">{c.label}</h2>
+                            <div className="event_cards">
+                                {<EventList 
+                                    category={c.label} 
+                                    getEventsByCategory={getEventsByCategory}
+                                    getEvents={getEvents}
+                                    joinEvent={joinEvent}
+                                    leaveEvent={leaveEvent} 
+                                    showInput={showInput}
+                                />}
+                            </div>
+                        </section>
+                    )})
+                }
+    
+                <button className="event_create" onClick={() => setShowInput(!showInput)}>
+                    Create New Event
+                </button>
+    
+                {
+                    showInput? 
+                    <EventForm setShowInput={setShowInput} /> 
+                    : null
+                }
+            </>
+            )
+        } else if (eventTab === "myEvents"){
+            return (
+                <div className="event_section">
+                    <h2 className="event_category">My Events</h2>
+                    <div className="event_cards">
+                    {
+                        profile.signedUpEvents?.map( e => {
+>>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
+                            return (
+                                <div className="event_card" key={e.id}>
+                                    <img src={e.imageUrl} className="event_img" />
+                                    <div>
+                                        <p>{e.name}</p>
+                                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                                    </div>
+                                    <div className="event_signup">
+                                        <p>{e.location}</p>
+<<<<<<< HEAD
+                                        <button className="signup_btn" onClick={() => {
+                                            Swal.fire({
+                                                title: 'Sorry to see you leave!',
+                                                confirmButtonText: 'OK'
+                                            })
+                                            leaveEvent(e.id).then(() => {
+                                                getEvents()
+                                                getEventsByCategory()
+                                            })
+                                        }}>
+                                        Leave
+=======
+                                        <button
+                                            className="signup_btn"
+                                            onClick={() => {
+                                                Swal.fire({
+                                                    title: 'Sorry to see you leave!',
+                                                    confirmButtonText: 'OK'
+                                                })
+                                                leaveEvent(e.id)
+                                                .then(() => getEvents() )
+                                            }}>
+                                            Leave
+>>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        }) : <h3 className="no_event">You haven't signed up any events yet.</h3>
+                    }
+                    </div>
+                </div>
+            )
+        }
+    }
 
     return (
         <div className="event_container">
@@ -48,62 +161,7 @@ export const EventPage = () => {
                 <img src={img} className="event_banner_img"/>
             </div>
 
-            <div className="drop-shadow"></div>
-
-            {
-                category.map(c => {
-                return (
-                    <section className="event_section" key={c.id}>
-                        <h2>{c.label}</h2>
-                        <div className="event_cards">
-                            {<EventList 
-                                category={c.label} 
-                                getEventsByCategory={getEventsByCategory}
-                                joinEvent={joinEvent}
-                                leaveEvent={leaveEvent} 
-                                showInput={showInput}
-                            />}
-                        </div>
-                    </section>
-                )})
-            }
-
-            <div className="event_section">
-                <h2 className="event_category">My Events</h2>
-                <div className="event_cards">
-                    {
-                        profile.signedUpEvents?.length?
-                        profile.signedUpEvents?.map(e => {
-                            return (
-                                <div className="event_card" key={e.id}>
-                                    <img src={e.imageUrl} className="event_img" />
-                                    <div>
-                                        <p>{e.name}</p>
-                                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                    </div>
-                                    <div className="event_signup">
-                                        <p>{e.location}</p>
-                                        <button className="signup_btn" onClick={() => {
-                                            Swal.fire({
-                                                title: 'Sorry to see you leave!',
-                                                confirmButtonText: 'OK'
-                                            })
-                                            leaveEvent(e.id).then(() => {
-                                                getEvents()
-                                                getEventsByCategory()
-                                            })
-                                        }}>
-                                        Leave
-                                        </button>
-                                    </div>
-                                </div>
-                            )
-                        }) : <h3 className="no_event">You haven't signed up any events yet.</h3>
-                    }
-                </div>
-            </div>
-            
-
+<<<<<<< HEAD
             { profile.user?.isStaff?
                 <button className="event_create" onClick={() => setShowInput(!showInput)}>
                 Create New Event
@@ -111,6 +169,16 @@ export const EventPage = () => {
             : null }
 
             { showInput? <EventForm setShowInput={setShowInput} /> : null }
+=======
+            <div className="drop-shadow"></div>
+
+            <div className="event_tabs">
+                <button className="event_create" type="button" onClick={() => setEventTab("browseEvents")}>Browse Events</button>
+                <button className="event_create" type="button" onClick={() => setEventTab("myEvents")}>My Events</button>
+            </div>
+
+            {renderTabs()}
+>>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
         </div>
     )
 }
