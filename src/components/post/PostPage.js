@@ -11,8 +11,9 @@ import listIcon from "./unapproved.svg"
 
 export const PostPage = () => {
     const { profile, getProfile } = useContext(ProfileContext)
-    const { posts, getPosts, approvePost } = useContext(PostContext)
+    const { posts, getPosts, approvePost, likePost, unlikePost, getMyFavoritePosts } = useContext(PostContext)
     const { createPost } = useContext(PostContext)
+    const [ favorites, setFavorites ] = useState([])
     const [ imgInput, setImgInput ] = useState(false)
     const [ post, setPost ] = useState({})
 
@@ -51,6 +52,10 @@ export const PostPage = () => {
     useEffect(() => {
         getPosts()
     }, [])
+
+    useEffect(() => {
+        getMyFavoritePosts().then(res => setFavorites(res))
+    }, [posts])
 
     /* file uploading */
     const handleFileSelect = e => {
@@ -100,6 +105,9 @@ export const PostPage = () => {
             case "myPosts":
                 tabPosts= posts.filter(p => p.author.id === profile.id)
             break
+            case "myFavorites":
+                tabPosts= favorites
+            break
             default:
                 tabPosts= posts
             break
@@ -135,7 +143,7 @@ export const PostPage = () => {
                     <img src={listIcon} className="icon" alt="explore feed" />
                     <p>Explore</p>
                 </button>
-                <button className="btn my_activity" >
+                <button className="btn my_activity" onClick={() => handleTab("myFavorites")} >
                     <img src={like} className="icon" alt="my favorites" />
                     <p>My Favorites</p>
                 </button>
@@ -153,7 +161,12 @@ export const PostPage = () => {
             </div>
 
 
-            <PostList posts={renderPosts()} approvePost={approvePost} />
+            <PostList 
+                posts={renderPosts()} 
+                approvePost={approvePost} 
+                likePost={likePost}
+                unlikePost={unlikePost}
+            />
 
 
             <div className="create">
@@ -182,7 +195,6 @@ export const PostPage = () => {
                     setPost({...post, ["content"]: "", ["imageUrl"]: ""})
                 }} >Submit</button>
             </div>
-
         </div>
     )
 }

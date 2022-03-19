@@ -24,7 +24,17 @@ export const PostProvider = (props) => {
         })
           .then(res => res.json())
           .then(setUnapproved)
-      }
+    }
+
+    const getMyFavoritePosts = () => {
+        return fetch("http://localhost:8000/posts/favorites", {
+          method: "GET",
+          headers: {
+            "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+          }
+        })
+          .then(res => res.json())
+    }
 
     const createPost = (post) => {
         return fetch("http://localhost:8000/posts", {
@@ -52,9 +62,32 @@ export const PostProvider = (props) => {
             },
             body: JSON.stringify(post)
         })
-            .then(getPosts)
-      }
-      
+        .then(getPosts)
+    }
+
+    const likePost = post => {
+        return fetch(`http://localhost:8000/posts/${post.id}/like`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        })
+        .then(getPosts)
+    }   
+
+    const unlikePost = post => {
+        return fetch(`http://localhost:8000/posts/${post.id}/like`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        })
+        .then(getPosts)
+    }  
       
     const deletePost = (postId) => {
         return fetch(`http://localhost:8000/posts/${postId}`, {
@@ -75,6 +108,9 @@ export const PostProvider = (props) => {
                 getUnapprovedPosts, 
                 createPost,
                 approvePost, 
+                likePost,
+                unlikePost,
+                getMyFavoritePosts,
                 deletePost
             }
         } >
