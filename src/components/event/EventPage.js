@@ -6,6 +6,7 @@ import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
 import { EventForm } from "./EventForm"
+import { ProfileContext } from "../profile/ProfileProvider.js";
 
 
 export const EventPage = () => {
@@ -13,7 +14,7 @@ export const EventPage = () => {
     const { profile, getProfile } = useContext(ProfileContext )
     const [ eventTab , setEventTab ] = useState("browseEvents")
     const [ showInput , setShowInput ] = useState(false)
-    const [category] = useState([
+    const [ category ] = useState([
         {
          id: 1,
          label: "Body Movement"
