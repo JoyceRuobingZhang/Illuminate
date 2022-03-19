@@ -4,10 +4,11 @@ import Swal from 'sweetalert2'
 import "./PostList.css"
 import comment from "./comment.svg"
 import like from "./like.svg"
+import unlike from "./unlike.svg"
 import approve from "./approve.svg"
 
 
-export const PostList = ({posts, approvePost}) => {
+export const PostList = ({posts, approvePost, likePost, unlikePost}) => {
 
   const sorted = posts.sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate))
 
@@ -35,10 +36,26 @@ export const PostList = ({posts, approvePost}) => {
                                 <img src={comment} className="icon"/>
                                 Comments
                             </button>
-                            <button className="btn reaction">
-                                <img src={like} className="icon"/>
-                                Like
-                            </button>
+
+                            {
+                                p.liked?
+                                <button className="btn reaction" onClick={(e) => {
+                                    e.preventDefault()
+                                    unlikePost(p)
+                                }}>
+                                    <img src={unlike} className="icon"/>
+                                    Unlike
+                                </button>
+                                : 
+                                <button className="btn reaction" onClick={(e) => {
+                                    e.preventDefault()
+                                    likePost(p)
+                                }}>
+                                    <img src={like} className="icon"/>
+                                    Like
+                                </button>
+                            }
+
                             {
                               p.approved? 
                               null 
