@@ -25,20 +25,38 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
         const theComments = comments.filter(c => c.post?.id === postId)
         if(postId === showComments){
             if(theComments.length){
-                return theComments.map(c => (
-                    <div className="comment" key={c.id}>
-                        <img src={c.author.profileImg} className="comment_profile" />
-                        <div className="comment_info">
-                            <div className="comment_info_header">
-                                <p>{c.author.user.firstName} {c.author.user.lastName}</p> 
-                                <i>{moment(c.publicationDate.toString()).format('MMMM Do YYYY, h:mm:ss a')}</i>
-                            </div>
-                            <p>{c.content}</p>
-                        </div>
+                return (<>
+                    <div className="comment_input_wrapper">
+                        <input type="text" placeholder="Leave a comment..." className="comment_input"/>
+                        <button className="comment_send">
+                            <img src={send} alt="send" className="icon" />
+                        </button>
                     </div>
-                ))
+                    {
+                        theComments.map(c => (
+                            <div className="comment" key={c.id}>
+                                <img src={c.author.profileImg} className="comment_profile" />
+                                <div className="comment_info">
+                                    <div className="comment_info_header">
+                                        <p>{c.author.user.firstName} {c.author.user.lastName}</p> 
+                                        <i>{moment(c.publicationDate.toString()).format('MMMM Do YYYY, h:mm:ss a')}</i>
+                                    </div>
+                                    <p>{c.content}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                    </>)
             } else {
-                return <h4>Be the first one to leave a comment.</h4>
+                return (<>
+                    <div className="comment_input_wrapper">
+                        <input type="text" placeholder="Leave a comment..." className="comment_input"/>
+                        <button className="comment_send">
+                            <img src={send} alt="send" className="icon" />
+                        </button>
+                    </div>
+                    <h4>Be the first one to leave a comment.</h4>
+                </>)
             }
         }
     }
@@ -102,12 +120,7 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
                                 }
                             </div>
                             <div className="comments">
-                                <div className="comment_input_wrapper">
-                                    <input type="text" placeholder="Leave a comment..." className="comment_input"/>
-                                    <button className="comment_send">
-                                        <img src={send} alt="send" className="icon" />
-                                    </button>
-                                </div>
+                                
                                 { renderComments(p.id) }
                             </div>
                         </div>
