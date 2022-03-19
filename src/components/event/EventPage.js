@@ -6,17 +6,12 @@ import { EventList } from "./EventList"
 import img from "./wellbeing.jpg"
 import "./EventPage.css"
 import { EventForm } from "./EventForm"
-import { ProfileContext } from "../profile/ProfileProvider.js";
 
 
 export const EventPage = () => {
     const { events, getEvents, getEventsByCategory, joinEvent, leaveEvent } = useContext(EventContext)
-<<<<<<< HEAD
     const { profile, getProfile } = useContext(ProfileContext)
-=======
-    const { profile, getProfile } = useContext(ProfileContext )
     const [ eventTab , setEventTab ] = useState("browseEvents")
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
     const [ showInput , setShowInput ] = useState(false)
     const [ category ] = useState([
         {
@@ -36,11 +31,8 @@ export const EventPage = () => {
     useEffect(() => {
         getProfile()
     }, [events])
-<<<<<<< HEAD
 
     const Swal = require('sweetalert2')
-=======
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
 
     useEffect(() => {
         getEvents()
@@ -48,14 +40,6 @@ export const EventPage = () => {
 
     const Swal = require('sweetalert2')
 
-<<<<<<< HEAD
-            <div className="event_section">
-                <h2 className="event_category">My Events</h2>
-                <div className="event_cards">
-                    {
-                        profile.signedUpEvents?.length?
-                        profile.signedUpEvents?.map(e => {
-=======
     // render Browse Events and My Events
     const renderTabs = () => {
         if(eventTab === "browseEvents"){
@@ -79,11 +63,11 @@ export const EventPage = () => {
                         </section>
                     )})
                 }
-    
+
                 <button className="event_create" onClick={() => setShowInput(!showInput)}>
                     Create New Event
                 </button>
-    
+
                 {
                     showInput? 
                     <EventForm setShowInput={setShowInput} /> 
@@ -98,17 +82,13 @@ export const EventPage = () => {
                     <div className="event_cards">
                     {
                         profile.signedUpEvents?.map( e => {
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
                             return (
                                 <div className="event_card" key={e.id}>
                                     <img src={e.imageUrl} className="event_img" />
-                                    <div>
-                                        <p>{e.name}</p>
-                                        <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                    </div>
+                                    <p>{e.name}</p>
+                                    <p>{moment(e.time.toString()).format('MMMM Do YYYY, h:mm:ss a')}</p>
                                     <div className="event_signup">
                                         <p>{e.location}</p>
-<<<<<<< HEAD
                                         <button className="signup_btn" onClick={() => {
                                             Swal.fire({
                                                 title: 'Sorry to see you leave!',
@@ -117,22 +97,8 @@ export const EventPage = () => {
                                             leaveEvent(e.id).then(() => {
                                                 getEvents()
                                                 getEventsByCategory()
-                                            })
-                                        }}>
-                                        Leave
-=======
-                                        <button
-                                            className="signup_btn"
-                                            onClick={() => {
-                                                Swal.fire({
-                                                    title: 'Sorry to see you leave!',
-                                                    confirmButtonText: 'OK'
-                                                })
-                                                leaveEvent(e.id)
-                                                .then(() => getEvents() )
-                                            }}>
-                                            Leave
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
+                                         }}> 
+                                            leave 
                                         </button>
                                     </div>
                                 </div>
@@ -148,7 +114,7 @@ export const EventPage = () => {
     return (
         <div className="event_container">
             <div className="drop-shadow"></div>
-            
+
             <div className="event_banner">
                 <div className="intro">
                     <h1>Mental Health Events</h1>
@@ -161,24 +127,12 @@ export const EventPage = () => {
                 <img src={img} className="event_banner_img"/>
             </div>
 
-<<<<<<< HEAD
-            { profile.user?.isStaff?
-                <button className="event_create" onClick={() => setShowInput(!showInput)}>
-                Create New Event
-                </button>
-            : null }
-
-            { showInput? <EventForm setShowInput={setShowInput} /> : null }
-=======
-            <div className="drop-shadow"></div>
-
             <div className="event_tabs">
                 <button className="event_create" type="button" onClick={() => setEventTab("browseEvents")}>Browse Events</button>
                 <button className="event_create" type="button" onClick={() => setEventTab("myEvents")}>My Events</button>
-            </div>
+             </div>
 
             {renderTabs()}
->>>>>>> 1d030f1863e6d5982f74218fb1b7bc5126f64904
         </div>
     )
 }
