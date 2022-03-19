@@ -7,10 +7,12 @@ import like from "./like.svg"
 import postIcon from "./post.svg"
 import img from "./image.svg"
 import listIcon from "./unapproved.svg"
+import { CommentContext } from "../comment/CommentProvider";
 
 
 export const PostPage = () => {
     const { profile, getProfile } = useContext(ProfileContext)
+    const { comments, getComments } = useContext(CommentContext)
     const { posts, getPosts, approvePost, likePost, unlikePost, getMyFavoritePosts } = useContext(PostContext)
     const { createPost } = useContext(PostContext)
     const [ favorites, setFavorites ] = useState([])
@@ -132,7 +134,7 @@ export const PostPage = () => {
                         console.log(upload) 
                         debugger
                         handleSubmit(e)
-                    }}>Submit</button> : null
+                    }}>Submit Change</button> : null
                 }
 
                 <h3 className="me_name">{profile.user?.firstName} {profile.user?.lastName}</h3>
@@ -166,6 +168,8 @@ export const PostPage = () => {
                 approvePost={approvePost} 
                 likePost={likePost}
                 unlikePost={unlikePost}
+                comments={comments}
+                getComments={getComments}
             />
 
 

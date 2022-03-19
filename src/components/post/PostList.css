@@ -50,8 +50,7 @@
 .reactions {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    margin: 1rem 5rem 1rem 0;
+    margin: 1rem 0 0 6rem;
 }
 
 .reaction {
@@ -60,6 +59,7 @@
     border: none;
     background-color: transparent;
     border-radius: 0.25rem;
+    margin-right: 4rem;
 }
 
 .reaction:hover {
@@ -79,3 +79,76 @@
     text-align: center;
     margin: 10rem
 }
+
+.comments {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem 0;
+    align-items: flex-start;
+}   
+
+.comment_info {
+    margin-left: 1rem;
+    background-color: rgb(240, 237, 234);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 23rem;
+}
+
+.comment_info_header {
+    display: flex;
+    align-items: center;
+}
+
+.comment_info_header p, i{
+   font-size: 0.75rem;
+   font-weight: 700;
+   padding: 0 1rem 0 0;
+   margin: 0;
+}
+
+.comment_profile {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.comment_input_wrapper {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.comment_input {
+    border: 1px solid darkgray;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 27rem;
+}
+
+.comment_send {
+    border: none;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.comment_send:hover {
+    border: none;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    background-color: rgb(235, 196, 183);
+    font-weight: 700;
+    width: fit-content;
+    cursor: pointer;
+}
+

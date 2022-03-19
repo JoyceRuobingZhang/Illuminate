@@ -9,6 +9,7 @@ import { CategoriesProvider } from "./category/CategoryProvider"
 import { PostProvider } from "./post/PostProvider"
 import { ProfileProvider } from "./profile/ProfileProvider"
 import { PostPage } from "./post/PostPage"
+import { CommentProvider } from "./comment/CommentProvider"
 
 
 export const ApplicationViews = () => {
@@ -33,6 +34,7 @@ export const ApplicationViews = () => {
                     <CategoriesProvider>
                         <PostProvider>
                             <ProfileProvider>
+                                <CommentProvider>
 
                                 <Route exact path="/">
                                     <Home />
@@ -53,7 +55,8 @@ export const ApplicationViews = () => {
                                 {/* <Route exact path="/games/edit/:gameId(\d+)">
                                     <GameForm />
                                 </Route> */}
-
+                                
+                                </CommentProvider>
                             </ProfileProvider>
                         </PostProvider>
                     </CategoriesProvider>
