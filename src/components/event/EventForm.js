@@ -4,9 +4,7 @@ import { useHistory } from "react-router-dom";
 import { EventContext } from "./EventProvider";
 import { CategoryContext } from "../category/CategoryProvider"
 
-export const EventForm = ({setShowInput, category, setCategory}) => {
-  const history = useHistory();
-
+export const EventForm = ({setShowInput, category}) => {
   const { createEvent } = useContext(EventContext)
   const { categories, getCategories }= useContext(CategoryContext)
   const [ currentEvent, setEvent ] = useState({
@@ -150,7 +148,6 @@ export const EventForm = ({setShowInput, category, setCategory}) => {
             }
             createEvent(newEvent).then(() => {
               setShowInput(false)
-              setCategory([...category])
             })
         }}
         className="event_create"

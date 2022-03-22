@@ -24,6 +24,7 @@
 .profile_img {
     width: 4rem;
     height: 4rem;
+    object-fit: contain;
     border-radius: 50%;
 }
 
@@ -50,7 +51,8 @@
 .reactions {
     display: flex;
     flex-direction: row;
-    margin: 1rem 0 0 6rem;
+    margin: auto;
+    margin-top: 1rem;
 }
 
 .reaction {

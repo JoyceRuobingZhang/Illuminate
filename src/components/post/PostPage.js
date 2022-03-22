@@ -12,7 +12,7 @@ import { CommentContext } from "../comment/CommentProvider";
 
 export const PostPage = () => {
     const { profile, getProfile } = useContext(ProfileContext)
-    const { comments, getComments } = useContext(CommentContext)
+    const { comments, getComments, createComment } = useContext(CommentContext)
     const { posts, getPosts, approvePost, likePost, unlikePost, getMyFavoritePosts } = useContext(PostContext)
     const { createPost } = useContext(PostContext)
     const [ favorites, setFavorites ] = useState([])
@@ -132,7 +132,6 @@ export const PostPage = () => {
                 {   submit?
                     <button className="btn submit_upload" onClick={(e) =>{
                         console.log(upload) 
-                        debugger
                         handleSubmit(e)
                     }}>Submit Change</button> : null
                 }
@@ -170,6 +169,7 @@ export const PostPage = () => {
                 unlikePost={unlikePost}
                 comments={comments}
                 getComments={getComments}
+                createComment={createComment}
             />
 
 
@@ -195,7 +195,10 @@ export const PostPage = () => {
 
                 <button className="submit" onClick={(e) => {
                     e.preventDefault()
-                    createPost({...post, publication_date: Date(Date.now())})
+                    createPost({
+                        ...post, 
+                        publication_date: Date(Date.now())
+                    })
                     setPost({...post, ["content"]: "", ["imageUrl"]: ""})
                 }} >Submit</button>
             </div>

@@ -25,16 +25,6 @@ export const PostProvider = (props) => {
           .then(res => res.json())
     }
 
-    const getComments = () => {
-        return fetch("http://localhost:8000/Comments", {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("illuminate_token")}`
-            }
-        })
-            .then(response => response.json())
-            .then(setComments)
-    }
-
     const createPost = (post) => {
         return fetch("http://localhost:8000/posts", {
             method: "POST",

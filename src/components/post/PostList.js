@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import moment from 'moment'
 import Swal from 'sweetalert2'
 import "./PostList.css"
-import comment from "./comment.svg"
+import commentIcon from "./comment.svg"
 import like from "./like.svg"
 import unlike from "./unlike.svg"
 import approve from "./approve.svg"
@@ -10,8 +10,9 @@ import send from "./send.svg"
 
 
 
-export const PostList = ({posts, approvePost, likePost, unlikePost, comments, getComments}) => {
+export const PostList = ({posts, approvePost, likePost, unlikePost, comments, getComments, createComment}) => {
     const [ showComments, setShowComments ] = useState(0)
+    const [ comment, setComment ] = useState({})
 
     useEffect(() => {
         getComments()
@@ -21,14 +22,25 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
 
     const Swal = require('sweetalert2')
 
+    const handleControlledInputChange = (e) => {
+        const newCurrentComment = {...comment }
+        newCurrentComment[e.target.name] = e.target.value
+        setComment(newCurrentComment)
+      };
+
     const renderComments = (postId) => {
         const theComments = comments.filter(c => c.post?.id === postId)
         if(postId === showComments){
             if(theComments.length){
                 return (<>
                     <div className="comment_input_wrapper">
-                        <input type="text" placeholder="Leave a comment..." className="comment_input"/>
-                        <button className="comment_send">
+                        <input type="text" placeholder="Leave a comment..." className="comment_input" 
+                        name="content" value={comment.content} onChange={handleControlledInputChange} />
+                        <button className="comment_send" type="button" onClick={() => createComment({
+                            content: comment.content,
+                            postId: postId,
+                            publication_date: Date(Date.now())
+                        })}>
                             <img src={send} alt="send" className="icon" />
                         </button>
                     </div>
@@ -80,7 +92,7 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
 
                             <div className="reactions">
                                 <button className="btn reaction" onClick={ () => setShowComments(p.id) }>
-                                    <img src={comment} className="icon"/>
+                                    <img src={commentIcon} className="icon"/>
                                     Comments
                                 </button>
 
