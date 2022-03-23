@@ -1,8 +1,8 @@
 import React from "react"
-import icon from './health.png'
-import star from "./star.svg";
-import emptyStar from "./empty-star.svg";
-import "./ServiceList.css"
+import icon from '../../assets/img/health.png'
+import star from "../../assets/img/star.svg";
+import emptyStar from "../../assets/img/empty-star.svg";
+import "../../assets/styles/ServiceList.css"
 
 export const ServiceList = ({ services }) => {
 

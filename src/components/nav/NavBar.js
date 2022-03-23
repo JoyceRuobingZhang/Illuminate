@@ -1,7 +1,8 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
-import "./NavBar.css"
-import logo from './logo.png'
+import "../../assets/styles/NavBar.css"
+import logo from '../../assets/img/logo.png'
+
 
 export const NavBar = () => {
     const history = useHistory()

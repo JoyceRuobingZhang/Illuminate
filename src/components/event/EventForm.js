@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import moment from "moment";
-import { useHistory } from "react-router-dom";
 import { EventContext } from "./EventProvider";
 import { CategoryContext } from "../category/CategoryProvider"
 
@@ -33,7 +32,7 @@ export const EventForm = ({setShowInput, category}) => {
 
       <fieldset>
         <div className="form-group">
-          <label htmlFor="image_url">image_url: </label>
+          <label htmlFor="image_url">Image URL: </label>
           <input
             type="text"
             name="image_url"
@@ -136,16 +135,18 @@ export const EventForm = ({setShowInput, category}) => {
         type="submit"
         onClick={(evt) => {
             evt.preventDefault();
+            // merge the time and date input values, and format it as the way backend expects
             const dateTime = moment(`${currentEvent.date} ${currentEvent.time}`, 'YYYY-MM-DD HH:mm:ss').format();
+
             const newEvent = {
               image_url: currentEvent.image_url,
               name: currentEvent.name,
               time: dateTime,
-              // date: currentEvent.date,
               location: currentEvent.location,
               host: currentEvent.host,
               categoryId: parseInt(currentEvent.categoryId)
             }
+            
             createEvent(newEvent).then(() => {
               setShowInput(false)
             })

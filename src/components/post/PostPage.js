@@ -2,22 +2,22 @@ import React, { useEffect, useState, useContext } from "react";
 import { ProfileContext } from "../profile/ProfileProvider";
 import { PostContext } from "./PostProvider";
 import { PostList } from "./PostList";
-import "./PostPage.css"
-import like from "./like.svg"
-import postIcon from "./post.svg"
-import img from "./image.svg"
-import listIcon from "./unapproved.svg"
+import "../../assets/styles/PostPage.css"
+import like from "../../assets/img/like.svg"
+import postIcon from "../../assets/img/post.svg"
+import img from "../../assets/img/image.svg"
+import listIcon from "../../assets/img/unapproved.svg"
 import { CommentContext } from "../comment/CommentProvider";
 
 
 export const PostPage = () => {
     const { profile, getProfile } = useContext(ProfileContext)
     const { comments, getComments, createComment } = useContext(CommentContext)
-    const { posts, getPosts, approvePost, likePost, unlikePost, getMyFavoritePosts } = useContext(PostContext)
+    const { posts, getPosts, approvePost, likePost, unlikePost, getMyFavoritePosts, deletePost } = useContext(PostContext)
     const { createPost } = useContext(PostContext)
     const [ favorites, setFavorites ] = useState([])
     const [ imgInput, setImgInput ] = useState(false)
-    const [ post, setPost ] = useState({})
+    const [ post, setPost ] = useState({imageUrl: ""})
 
     // file uploading
     const [upload, setUpload] = useState({ file: null })
@@ -170,9 +170,11 @@ export const PostPage = () => {
                 comments={comments}
                 getComments={getComments}
                 createComment={createComment}
+                profile={profile}
+                deletePost={deletePost}
             />
 
-
+            {/* create a new post */}
             <div className="create">
                 <div className="me_author">
                     <img src={profile.profileImg || "https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg"} 

@@ -3,9 +3,9 @@ import moment from "moment";
 import { EventContext } from "./EventProvider.js";
 import { ProfileContext } from ".././profile/ProfileProvider"
 import { EventList } from "./EventList"
-import img from "./wellbeing.jpg"
-import "./EventPage.css"
 import { EventForm } from "./EventForm"
+import img from "../../assets/img/wellbeing.jpg"
+import "../../assets/styles/EventPage.css"
 
 
 export const EventPage = () => {

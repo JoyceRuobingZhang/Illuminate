@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { ServiceContext } from "./ServiceProvider"
 import { ServiceList } from "./ServiceList"
-import "./ServicePage.css"
+import "../../assets/styles/ServicePage.css"
 
 
 export const ServicePage = ( ) => {
@@ -140,7 +140,7 @@ export const ServicePage = ( ) => {
                         <GoogleMap
                           mapContainerStyle={containerStyle}
                           center={center}
-                          zoom={12}
+                          zoom={10}
                           onLoad={onLoad}
                           onUnmount={onUnmount}
                         >

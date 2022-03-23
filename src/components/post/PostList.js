@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"
 import moment from 'moment'
-import Swal from 'sweetalert2'
-import "./PostList.css"
-import commentIcon from "./comment.svg"
-import like from "./like.svg"
-import unlike from "./unlike.svg"
-import approve from "./approve.svg"
-import send from "./send.svg"
+import "../../assets/styles/PostList.css"
+import commentIcon from "../../assets/img/comment.svg"
+import like from "../../assets/img/like.svg"
+import unlike from "../../assets/img/unlike.svg"
+import approve from "../../assets/img/approve.svg"
+import send from "../../assets/img/send.svg"
+import deleteIcon from "../../assets/img/delete.svg"
 
 
 
-export const PostList = ({posts, approvePost, likePost, unlikePost, comments, getComments, createComment}) => {
+export const PostList = ({posts, approvePost, likePost, unlikePost, comments, getComments, createComment, profile, deletePost}) => {
     const [ showComments, setShowComments ] = useState(0)
     const [ comment, setComment ] = useState({})
 
@@ -96,6 +96,7 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
                                     Comments
                                 </button>
 
+                                {/* render like/unlike button */}
                                 {
                                     p.liked?
                                     <button className="btn reaction" onClick={(e) => {
@@ -115,6 +116,7 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
                                     </button>
                                 }
 
+                                {/* render approve button for admin user */}
                                 {
                                     p.approved? 
                                     null 
@@ -129,6 +131,21 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
                                         <img src={approve} className="icon"/>
                                         Approve
                                     </button>
+                                }
+
+                                {
+                                    p.author?.id === profile.id ?
+                                    <button className="btn reaction" type="button" onClick={() => {
+                                        deletePost(p.id)
+                                        Swal.fire({
+                                            title: 'Delete Successfully!',
+                                            confirmButtonText: 'OK'
+                                        })
+                                    }}>
+                                        <img src={deleteIcon} alt="delete" className="icon" style={{width:"20px"}} />
+                                        Delete
+                                    </button>
+                                    : null
                                 }
                             </div>
                             <div className="comments">

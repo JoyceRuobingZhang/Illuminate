@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import moment from "moment";
-import Swal from 'sweetalert2'
-import "./EventList.css"
+import "../../assets/styles/EventList.css"
 
 // event card list component
 export const EventList = ({category, getEventsByCategory, getEvents, joinEvent, leaveEvent, showInput}) => {
