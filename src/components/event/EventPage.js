@@ -62,10 +62,14 @@ export const EventPage = () => {
                     )})
                 }
 
-                <button className="event_create" onClick={() => setShowInput(!showInput)}>
-                    Create New Event
-                </button>
-
+                {/* create event */}
+                {
+                    profile.user?.isStaff?
+                    <button className="event_create" onClick={() => setShowInput(!showInput)}>
+                        Create New Event
+                    </button>
+                    : null
+                }
                 {
                     showInput? 
                     <EventForm setShowInput={setShowInput} /> 

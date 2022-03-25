@@ -1,0 +1,40 @@
+.eventForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.fields {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 2rem;
+}
+
+.fields input {
+    margin-top: .5rem;
+}
+
+.form-group, .time_input {
+    margin-right: 3rem;
+    width: 33%;
+    min-width: 23rem;
+}
+
+.time_inputs {
+    display: flex;
+    flex-direction: row;
+}
+
+.category_field {
+    display: flex;
+    flex-direction: column;
+}
+
+.category_select {
+    margin-top: .5rem;
+    padding: 1rem;
+    width: 13rem;
+    border: 1px solid lightgrey;
+    border-radius: .25rem;
+}
+
