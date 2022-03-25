@@ -22,11 +22,13 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
 
     const Swal = require('sweetalert2')
 
+
     const handleControlledInputChange = (e) => {
         const newCurrentComment = {...comment }
         newCurrentComment[e.target.name] = e.target.value
         setComment(newCurrentComment)
       };
+
 
     const renderComments = (postId) => {
         const theComments = comments.filter(c => c.post?.id === postId)
@@ -73,6 +75,26 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
         }
     }
 
+    
+    // render approve button for admin user
+    const renderApproveBtn = (p) => {
+       if(profile.user.isStaff) {
+           if(!p.approved){
+                return <button className="btn reaction" onClick={() => {
+                    approvePost(p)
+                    Swal.fire({
+                        title: 'Approved Successfully',
+                        confirmButtonText: 'OK'
+                    })
+                    }}>
+                        <img src={approve} className="icon"/>
+                        Approve
+                    </button>
+           }
+       }
+    }
+
+
     return(
         <div className="posts">
             {
@@ -116,22 +138,7 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
                                     </button>
                                 }
 
-                                {/* render approve button for admin user */}
-                                {
-                                    p.approved? 
-                                    null 
-                                    : 
-                                    <button className="btn reaction" onClick={() => {
-                                    approvePost(p)
-                                    Swal.fire({
-                                        title: 'Approved Successfully',
-                                        confirmButtonText: 'OK'
-                                    })
-                                    }}>
-                                        <img src={approve} className="icon"/>
-                                        Approve
-                                    </button>
-                                }
+                                {renderApproveBtn(p)}
 
                                 {
                                     p.author?.id === profile.id ?
@@ -156,7 +163,7 @@ export const PostList = ({posts, approvePost, likePost, unlikePost, comments, ge
                     </section>
                 )
             })
-            : <p className="no_posts">No Unapproved Posts.</p>
+            : <p className="no_posts">No Posts Here.</p>
             }
         </div>
     )

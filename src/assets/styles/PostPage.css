@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: center;
     margin: 1rem 3rem;
-    background-image: linear-gradient(to left top, #fff9ef, #fefaf1, #fdfcf2, #fcfdf4, #fcfef6, #fdfdf5, #fefdf5, #fffcf5, #fffaf5, #fff9f8, #fffbfd, #fdf9ff);}
+    background-image: linear-gradient(to left top, #fff9ef, #fefaf1, #fdfcf2, #fcfdf4, #fcfef6, #fdfdf5, #fefdf5, #fffcf5, #fffaf5, #fdf3f2, #fbf5f8, #fdf9ff);}
 
 .me {
     display: flex;
