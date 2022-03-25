@@ -1,5 +1,6 @@
 .event_container {
-    margin: 3rem 4rem;
+    width: 90%;
+    margin-left: 5rem;
 }
 
 .event_banner {
@@ -60,6 +61,19 @@
     padding: 0.75rem;
     font-weight: 700;
     width: 9rem;
+    cursor: pointer;
+}
+
+.event_create:hover {
+    margin: 0 0 1rem 2rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: linear-gradient(to bottom, #ece4d3 6%, #ecae84 100%);
+    padding: 0.75rem;
+    font-weight: 700;
+    width: 9rem;
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .event_create:hover {
@@ -69,8 +83,9 @@
     background: linear-gradient(to bottom, #ece4d3 6%, rgb(150, 179, 159) 100%);
     padding: 0.75rem;
 }
+
 .event_tabs {
-    margin: 1rem 0;
+    margin: 2rem 0 0 0;
 }
 
 .no_event {

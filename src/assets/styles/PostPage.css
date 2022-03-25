@@ -3,13 +3,13 @@
     flex-direction: row;
     justify-content: center;
     margin: 1rem 3rem;
-}
+    background-image: linear-gradient(to left top, #fff9ef, #fefaf1, #fdfcf2, #fcfdf4, #fcfef6, #fdfdf5, #fefdf5, #fffcf5, #fffaf5, #fff9f8, #fffbfd, #fdf9ff);}
 
 .me {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid lightgrey;
+    border: 2px solid rgb(250, 238, 216);
     border-radius: 1rem;
     width: 20rem;
     height: max-content;
@@ -32,7 +32,7 @@
 .uploader::before {
     content: 'Upload Profile Image';
     display: inline-block;
-    background: linear-gradient(top, #b6b5b5, #e3e3e3);
+    background: linear-gradient(top, #fffcfc, #e3e3e3);
     border: 1px solid #999;
     border-radius: 3px;
     padding: 5px 8px;
@@ -71,12 +71,13 @@
 
 .my_activity:hover {
     color: darksalmon;
+    transform: scale(1.2);
 }
 
 .create {
     display: flex;
     flex-direction: column;
-    border: 1px solid lightgrey;
+    border: 2px solid rgb(250, 238, 216);
     border-radius: 1rem;
     width: 23rem;
     height: max-content;

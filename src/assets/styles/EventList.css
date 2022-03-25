@@ -35,4 +35,6 @@
     background: linear-gradient(to bottom, #ece4d3 6%, #ecae84 100%);
     padding: 0.5rem;
     font-weight: 700;
+    transform: scale(1.2);
+    cursor: pointer;
 }

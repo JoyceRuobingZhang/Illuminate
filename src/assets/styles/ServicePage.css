@@ -49,6 +49,7 @@ small {
     padding: 0.75rem;
     width:max-content;
     height: max-content;
+    font-weight: 700;
 }
 
 .submit:hover {
@@ -61,6 +62,8 @@ small {
     width:max-content;
     height: max-content;
     cursor: pointer;
+    transform: scale(1.1);
+    font-weight: 700;
 }
 
 .service_search_clear {

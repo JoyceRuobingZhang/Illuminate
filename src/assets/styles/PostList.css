@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: 2rem 3rem;
-    border: 1px solid lightgrey;
+    border: 2px solid rgb(250, 238, 216);
     border-radius: 1rem;
     width: 43rem;
 }
@@ -18,7 +18,7 @@
 .post:hover {
     display: flex;
     flex-direction: row;
-    background-color: rgb(246, 246, 246);
+    background-color: rgb(251, 242, 233);
 }
 
 .profile_img {
@@ -68,7 +68,8 @@
     display: flex;
     align-items: center;
     border: none;
-    background-color:rgb(222, 222, 223);
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 0.75rem rgb(114, 44, 3)); 
 }
 
 .icon {
